@@ -1,5 +1,5 @@
 {
- "package": "1.1.0",
+ "package": "1.5.0",
  "pack": "1.0.0",
  "knowledge_db": null,
  "files": {
@@ -9,10 +9,7 @@
   "knowledge/reference_cases.json": "7414a14e2c4202a7fae8cdd14e1a2ef7267f35a9665b0633001349c698d4e4e7",
   "capabilities/procedures.py": "1409836c6c01ea79b42fc3e7cabb5d2665def45aabc2d14a79e9fe0e76678aed",
   "capabilities/procedures_certified.json": "58250d6f9a0a50599d5cc24ab2d2fcc444a04f301ef9d8436648c2ff8d543fef",
-  "actuarial_science_knowledge_public.sqlite": "6d80220724d8b6fe40ea6a276225e6a5f938fbdef14bfe9845db97f8c9d75303",
-  "search/encoder.int8.onnx": "521452d928a72da4d241b1835ab0f46b0e81ff58ffff0367b9a7029bd129fbd9",
-  "search/tokenizer.json": "b2f2deb461e6ad672b8e42aac29773e7a9be77d582cdf58808113ea43fda565e",
-  "search/index.json": "cbd28f9d940abc33d3bfd4a61beed818eda670deffcfe40b46845d84423f9ef9"
+  "actuarial_science_knowledge_public.sqlite": "9d634300423aba7e6bcd642a5f90dc0c981d816e1971c6b61119b7b2385a2be1"
  },
  "engine": [
   "__init__.py",
