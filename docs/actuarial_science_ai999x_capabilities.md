@@ -66,7 +66,9 @@ result.show()
 | Premiums / gross premiums | [Gross annual premium for whole life insurance with expenses](#act_gross_premium) |
 | Premiums / loss random variable | [Loss at issue of whole life insurance: mean, standard deviation, probability of loss](#act_loss_at_issue) |
 | Premiums / net premiums | [Net annual premium for whole life insurance](#act_net_premium_whole_life), [Net annual premium for term insurance](#act_net_premium_term), [Net annual premium for endowment insurance](#act_net_premium_endowment), [Net annual premium for limited-payment whole life insurance](#act_net_premium_limited_pay) |
+| Ratemaking / loss and premium adjustments | [Loss and premium trend factors to a future period](#act_trend_projection) |
 | Ratemaking / loss ratio method | [Indicated rate change by the loss ratio method](#act_loss_ratio_rate_change) |
+| Ratemaking / premium adjustments | [On-level earned premium by the parallelogram method](#act_on_level_premium) |
 | Ratemaking / pure premium method | [Indicated rate by the pure premium method](#act_pure_premium_rate) |
 | Reserves / gross premium reserves | [Gross premium reserve for whole life insurance with expenses](#act_gross_premium_reserve) |
 | Reserves / prospective reserves | [Net premium reserve for whole life insurance](#act_reserve_whole_life), [Net premium reserve for endowment insurance](#act_reserve_endowment), [Net premium reserve for term insurance](#act_reserve_term) |
@@ -208,6 +210,8 @@ Call `solve("<id>", **inputs)` with plain numbers; the result's `values` holds e
 | act_kaplan_meier | Kaplan-Meier product-limit survival estimate | times, events, t | S, F, deaths |
 | act_nelson_aalen | Nelson-Aalen cumulative hazard estimate | times, events, t | H, S |
 | act_exponential_mle | Exponential maximum-likelihood fit with censoring | times, events, t | hazard, mean, S |
+| act_on_level_premium | On-level earned premium by the parallelogram method | dates, changes, years, EP, T | average_level, factors, on_level_EP, total_on_level_EP, current_level |
+| act_trend_projection | Loss and premium trend factors to a future period | amounts, years, trend, to_date | periods, factors, trended, total_trended |
 
 <a id="act_interest_rate_conversion"></a>
 
@@ -4857,3 +4861,121 @@ actuarial_science_ai999x.solve('act_exponential_mle', times=[10.0, 4.0, 7.5, 12.
 | Exponential maximum likelihood fit: times = [10, 4, 7.5, 12], events = [1, 1, 1, 1], t = 5 | SOLVED | hazard = 0.119403, mean = 8.375, S = 0.550452 |
 | Exponential maximum likelihood fit: events = [1, 1, 0, 1, 0], t = 3 | NEEDS_INPUT | act_exponential_mle needs times (observed times (a list)). Example: solve('act_exponential_mle', times=[1.0, 2.0, 2.0, 3 |
 | Exponential maximum likelihood fit: times = [1, 2, 2, 3, 5], events = [1, 1, 0, 1, 0], t = 3, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: actuarial_science_ai999x.template |
+
+<a id="act_on_level_premium"></a>
+
+### On-level earned premium by the parallelogram method, `act_on_level_premium`
+
+The average rate level of each calendar year's earned premium under past rate changes (policies written evenly, earned evenly over their term), the on-level factor that brings it to the current rate level, and the earned premium at current rates.
+
+$$
+\bar L_Y = \sum_j \big(A(t_{j+1} - Y) - A(t_j - Y)\big) L_j,\qquad \text{factor}_Y = \frac{L_{\mathrm{current}}}{\bar L_Y}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `dates` | effective dates of the rate changes as decimal years, increasing (2022.5 = 1 July 2022) |  |
+| `changes` | rate change at each date as a decimal (0.05 = +5%, $-0.03 = -3$%) |  |
+| `years` | calendar years of the earned premium (whole numbers, increasing) |  |
+| `EP` | earned premium of each calendar year (at the rates then charged) |  |
+| `T` | policy term in years, at most 1 (1 = annual, 0.5 = six months) |  |
+
+| output | meaning |
+|---|---|
+| `average_level` | average rate level of each calendar year's earned premium (a list) |
+| `factors` | on-level factor of each year: current level / average level (a list) |
+| `on_level_EP` | earned premium at current rate level of each year (a list) |
+| `total_on_level_EP` | total earned premium at current rate level |
+| `current_level` | current cumulative rate level (1 before the first change) |
+
+- **Method:** share of CY earned exposure written before d: $(d+T)^{2}/(2T)$, $T/2 + d$, $1 - (1-d)^{2}/(2T)$ on the three parts of the parallelogram; average level = sum of shares x levels; factor = current level / average level
+- **Assumes:** one change per date, dates increasing; -100% < change < 100%; whole calendar years, increasing; earned premiums >= 0; $0 < T  \leq  1$
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![on-level factor of each year: current level / average level (a list) (factors) returned by actuarial-science-ai999x for the worked example, one value for each years (calendar years of the earned premium (whole numbers, increasing)) (3 values, first 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-on-level-premium-series)
+
+*on-level factor of each year: current level / average level (a list) (factors) returned by actuarial-science-ai999x for the worked example, one value for each years (calendar years of the earned premium (whole numbers, increasing)) (3 values, first 1.08642, last 1, largest 1.08642); with average_level (average rate level of each calendar year's earned premium (a list)), on_level_EP (earned premium at current rate level of each year (a list)). Inputs: dates = [2022.5], changes = [0.1], years = [2022.0, 2023.0, 2024.0], EP = [1000.0, 1100.0, 1200.0], T = 1.0.*
+
+![The data EP (earned premium of each calendar year (at the rates then charged)) against years (calendar years of the earned premium (whole numbers, increasing)) as given in the worked example (3 points); drawn on it from what actuarial-science-ai999x returned: the returned average_level; the returned factors; the returned on_level_EP](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-on-level-premium-xy)
+
+*The data EP (earned premium of each calendar year (at the rates then charged)) against years (calendar years of the earned premium (whole numbers, increasing)) as given in the worked example (3 points); drawn on it from what actuarial-science-ai999x returned: the returned average_level; the returned factors; the returned on_level_EP. Also returned: total_on_level_EP = 3399.06, current_level = 1.1. Other inputs: dates = [2022.5], changes = [0.1], T = 1.0.*
+
+```python
+actuarial_science_ai999x.solve('act_on_level_premium', dates=[2022.5], changes=[0.1], years=[2022.0, 2023.0, 2024.0], EP=[1000.0, 1100.0, 1200.0], T=1.0)
+# -> average_level = [1.0125, 1.0875, 1.1], factors = [1.08641975309, 1.01149425287, 1.0], on_level_EP = [1086.41975309, 1112.64367816, 1200.0], total_on_level_EP = 3399.06, current_level = 1.1   (SOLVED)
+```
+
+```python
+actuarial_science_ai999x.solve('act_on_level_premium', dates=[2021.25, 2022.0], changes=[0.05, -0.02], years=[2021.0, 2022.0], EP=[500.0, 520.0], T=0.5)
+# -> average_level = [1.025, 1.03425], factors = [1.00390243902, 0.994923857868], on_level_EP = [501.951219512, 517.360406091], total_on_level_EP = 1019.31, current_level = 1.029   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| On-level earned premium: dates = [2022.5], changes = [0.1], years = [2022, 2023, 2024], EP = [1000, 1100, 1200], T = 1 | SOLVED | average_level = [1.0125, 1.0875, 1.1], factors = [1.08641975309, 1.01149425287, 1.0], on_level_EP = [1086.41975309, 1112.64367816, 1200.0], total_on_level_EP = 3399.06, current_level = 1.1 |
+| On-level earned premium: dates = [2021.25, 2022], changes = [0.05, -0.02], years = [2021, 2022], EP = [500, 520], T = 0.5 | SOLVED | average_level = [1.025, 1.03425], factors = [1.00390243902, 0.994923857868], on_level_EP = [501.951219512, 517.360406091], total_on_level_EP = 1019.31, current_level = 1.029 |
+| On-level earned premium: changes = [0.1], years = [2022, 2023, 2024], EP = [1000, 1100, 1200], T = 1 | NEEDS_INPUT | act_on_level_premium needs dates (effective dates of the rate changes as decimal years, increasing (2022.5 = 1 July 2022 |
+| On-level earned premium: dates = [2022.5], changes = [0.1], years = [2022, 2023, 2024], EP = [1000, 1100, 1200], T = 1, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: actuarial_science_ai999x.template |
+| On-level earned premium: dates = [2022.5], changes = [0.1], years = [2022, 2023, 2024], EP = [1000, 1100, 1200], T = 2 | INVALID_INPUT | On-level earned premium by the parallelogram method: the policy term T must lie between 0 and 1 year (0.5 = six months). |
+| On-level earned premium: dates = [2022.5, 2022], changes = [0.1, 0.05], years = [2022], EP = [1000], T = 1 | INVALID_INPUT | On-level earned premium by the parallelogram method: the effective dates must increase. |
+| Parallelogram method: dates = [2022.5], changes = [0.1], years = [2022, 2023, 2024], EP = [1000, 1100, 1200], T = 1 | SOLVED | average_level = [1.0125, 1.0875, 1.1], factors = [1.08641975309, 1.01149425287, 1.0], on_level_EP = [1086.41975309, 1112.64367816, 1200.0], total_on_level_EP = 3399.06, current_level = 1.1 |
+
+<a id="act_trend_projection"></a>
+
+### Loss and premium trend factors to a future period, `act_trend_projection`
+
+The trend period of each experience year (from its midpoint to the average date of the future period), the compound trend factor at an annual trend rate, and the trended losses or premiums.
+
+$$
+t_y = D - (y + \tfrac12),\qquad \text{trended}_y = X_y\,(1 + g)^{t_y}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `amounts` | losses (or premiums) of each experience year (a list) |  |
+| `years` | experience years (whole numbers, a list) |  |
+| `trend` | annual trend rate (3% or 0.03; negative for a falling trend) |  |
+| `to_date` | average date of the future period as a decimal year (2025.5 = 1 July 2025) |  |
+
+| output | meaning |
+|---|---|
+| `periods` | trend period of each year in years: to_date - (year + 0.5) (a list) |
+| `factors` | trend factor (1 + trend)^period of each year (a list) |
+| `trended` | trended amount of each year (a list) |
+| `total_trended` | total of the trended amounts |
+
+- **Method:** period = to_date - (year + 0.5); factor = (1 + trend)^period; trended = amount x factor
+- **Assumes:** one year per amount; whole years; amounts >= 0; -100% < trend < 100%; to_date >= year + 0.5
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![The plane vectors of the worked example as arrows from the origin: input amounts = (100000, 120000), years = (2022, 2023); returned by actuarial-science-ai999x: periods = (3, 2), factors = (1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-trend-projection-vectors)
+
+*The plane vectors of the worked example as arrows from the origin: input amounts = (100000, 120000), years = (2022, 2023); returned by actuarial-science-ai999x: periods = (3, 2), factors = (1.15762, 1.1025); also returned total_trended = 248062. Other inputs: trend = 0.05, to_date = 2025.5. Marked: the tip of each returned vector.*
+
+![trend period of each year in years: to_date - (year + 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-trend-projection-series)
+
+*trend period of each year in years: to_date - (year + 0.5) (a list) (periods) at each trended amount of each year (a list) (trended), both returned by actuarial-science-ai999x for the worked example (amounts = [100000.0, 120000.0], years = [2022.0, 2023.0], trend = 0.05, to_date = 2025.5): 115762 → 3; 132300 → 2.*
+
+```python
+actuarial_science_ai999x.solve('act_trend_projection', amounts=[100000.0, 120000.0], years=[2022.0, 2023.0], trend=0.05, to_date=2025.5)
+# -> periods = [3.0, 2.0], factors = [1.157625, 1.1025], trended = [115762.5, 132300.0], total_trended = 248062   (SOLVED)
+```
+
+```python
+actuarial_science_ai999x.solve('act_trend_projection', amounts=[50000.0], years=[2021.0], trend=-0.02, to_date=2024.0)
+# -> periods = [2.5], factors = [0.950747493712], trended = [47537.3746856], total_trended = 47537.4   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Trend factors: amounts = [100000, 120000], years = [2022, 2023], trend = 0.05, to_date = 2025.5 | SOLVED | periods = [3.0, 2.0], factors = [1.157625, 1.1025], trended = [115762.5, 132300.0], total_trended = 248062 |
+| Trend factors: amounts = [50000], years = [2021], trend = -0.02, to_date = 2024 | SOLVED | periods = [2.5], factors = [0.950747493712], trended = [47537.3746856], total_trended = 47537.4 |
+| Trend factors: years = [2022, 2023], trend = 0.05, to_date = 2025.5 | NEEDS_INPUT | act_trend_projection needs amounts (losses (or premiums) of each experience year (a list)). Example: solve('act_trend_pr |
+| Trend factors: amounts = [100000, 120000], years = [2022, 2023], trend = 0.05, to_date = 2025.5, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: actuarial_science_ai999x.template |
+| Loss trend: amounts = [100000, 120000], years = [2022, 2023], trend = 5%, to_date = 2025.5 | SOLVED | periods = [3.0, 2.0], factors = [1.157625, 1.1025], trended = [115762.5, 132300.0], total_trended = 248062 |
+| Trend factors: amounts = [100000, 120000], years = [2022, 2023], trend = 5%, to_date = 2022 | INVALID_INPUT | Loss and premium trend factors to a future period: the projection date must not lie before the middle of an experience y |
+| Trend factors: amounts = [100000, 120000], years = [2022, 2023], trend = 5, to_date = 2025.5 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: actuarial_science_ai999x.template |

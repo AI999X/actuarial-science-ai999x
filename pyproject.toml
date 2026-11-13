@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "actuarial-science-ai999x"
-version = "1.5.0"
+version = "1.6.0"
 description = "Offline actuarial science and insurance solver: life tables and survival models, life insurances and annuities, net and gross premiums, reserves and Thiele's equation, interest theory, loss models with deductibles and limits, Panjer's recursion, VaR and TVaR, Buhlmann and limited fluctuation credibility, chain-ladder, Bornhuetter-Ferguson, Cape Cod and Mack reserving, with steps, LaTeX and honest refusals"
 readme = "README.md"
 requires-python = ">=3.10"

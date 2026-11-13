@@ -90,9 +90,11 @@
   "act_pure_premium_rate",
   "act_kaplan_meier",
   "act_nelson_aalen",
-  "act_exponential_mle"
+  "act_exponential_mle",
+  "act_on_level_premium",
+  "act_trend_projection"
  ],
- "generated": "2026-11-01",
+ "generated": "2026-11-13",
  "tool": "tools/certify_procedures.py",
  "report": "release/procedure_certification.json",
  "weak_references": {

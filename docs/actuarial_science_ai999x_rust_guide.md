@@ -1,8 +1,8 @@
 # actuarial-science: the Actuarial Science and Insurance program, user guide
 
-**actuarial-science-ai999x 1.1.0**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
+**actuarial-science-ai999x 1.6.0**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
 
-Actuarial Science and Insurance covers life tables and survival models, life insurances and annuities, net and gross premiums, reserves and Thiele's equation, interest theory, loss models with deductibles and limits, Panjer's recursion, VaR and TVaR, credibility and loss reserving (chain-ladder, Bornhuetter-Ferguson, Cape Cod, Mack). This guide is about `actuarial-science`, the model as a self-contained program for Windows and Linux: 91 capabilities in 15 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model's page (https://www.ai999x.com/models/actuarial-science-ai999x/); the Python package (`pip install actuarial-science-ai999x`) has its own guide. Every command output printed here is what the program printed.
+Actuarial Science and Insurance covers life tables and survival models, life insurances and annuities, net and gross premiums, reserves and Thiele's equation, interest theory, loss models with deductibles and limits, Panjer's recursion, VaR and TVaR, credibility and loss reserving (chain-ladder, Bornhuetter-Ferguson, Cape Cod, Mack). This guide is about `actuarial-science`, the model as a self-contained program for Windows and Linux: 93 capabilities in 15 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model's page (https://www.ai999x.com/models/actuarial-science-ai999x/); the Python package (`pip install actuarial-science-ai999x`) has its own guide. Every command output printed here is what the program printed.
 
 ## Contents
 
@@ -17,37 +17,37 @@ Actuarial Science and Insurance covers life tables and survival models, life ins
 
 ## 1. Get it
 
-Version 1.5.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/
+Version 1.6.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/
 
 | what | system | download |
 |---|---|---|
-| Desktop app: Actuarial Science and Insurance | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-actuarial-science-1.5.0-windows-x86_64.zip |
-| Desktop app: Actuarial Science and Insurance | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-actuarial-science-1.5.0-linux-x86_64.tar.gz |
-| Desktop app: all models | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-windows-x86_64.zip |
-| Desktop app: all models | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz |
-| Command line | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-windows-x86_64.zip |
-| Command line | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz |
+| Desktop app: Actuarial Science and Insurance | Windows x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-actuarial-science-1.6.0-windows-x86_64.zip |
+| Desktop app: Actuarial Science and Insurance | Linux x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-actuarial-science-1.6.0-linux-x86_64.tar.gz |
+| Desktop app: all models | Windows x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-windows-x86_64.zip |
+| Desktop app: all models | Linux x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-linux-x86_64.tar.gz |
+| Command line | Windows x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-windows-x86_64.zip |
+| Command line | Linux x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz |
 
 ### Desktop app
 
-Actuarial Science and Insurance in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-actuarial-science-1.5.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-actuarial-science.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
+Actuarial Science and Insurance in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-actuarial-science-1.6.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-actuarial-science.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-actuarial-science-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-actuarial-science-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-actuarial-science-1.5.0-linux-x86_64.tar.gz
-./ai999x-actuarial-science-1.5.0-linux-x86_64/ai999x-actuarial-science
+tar xzf ai999x-actuarial-science-1.6.0-linux-x86_64.tar.gz
+./ai999x-actuarial-science-1.6.0-linux-x86_64/ai999x-actuarial-science
 ```
 
-It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.5.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
+It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.6.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-1.5.0-linux-x86_64.tar.gz
-./ai999x-1.5.0-linux-x86_64/ai999x
+tar xzf ai999x-1.6.0-linux-x86_64.tar.gz
+./ai999x-1.6.0-linux-x86_64/ai999x
 ```
 
 ### Command line: Linux
@@ -55,11 +55,11 @@ tar xzf ai999x-1.5.0-linux-x86_64.tar.gz
 The bundle holds one program per model; `actuarial-science` is this one. The checksum line should print OK.
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-mkdir -p ~/.local/share && tar xzf ai999x-cli-1.5.0-linux-x86_64.tar.gz -C ~/.local/share
-echo 'export PATH="$HOME/.local/share/ai999x-cli-1.5.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
+mkdir -p ~/.local/share && tar xzf ai999x-cli-1.6.0-linux-x86_64.tar.gz -C ~/.local/share
+echo 'export PATH="$HOME/.local/share/ai999x-cli-1.6.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
 actuarial-science --version
 ```
 
@@ -68,12 +68,12 @@ actuarial-science --version
 The fourth line should print True.
 
 ```powershell
-$F = "ai999x-cli-1.5.0-windows-x86_64.zip"
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/$F" -OutFile $F
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS" -OutFile SHA256SUMS
+$F = "ai999x-cli-1.6.0-windows-x86_64.zip"
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.6.0/$F" -OutFile $F
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS" -OutFile SHA256SUMS
 (Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split ' ')[0]
 Expand-Archive $F -DestinationPath "$env:LOCALAPPDATA\AI999X" -Force
-$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.5.0-windows-x86_64"; $env:Path += ";$D"
+$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.6.0-windows-x86_64"; $env:Path += ";$D"
 [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$D", "User")
 actuarial-science --version
 ```
@@ -96,7 +96,7 @@ Prints the model, its version and that this is the Rust build.
 
 ```shell
 $ actuarial-science --version
-actuarial-science-ai999x 1.5.0 (Rust build, ax-engine 1.5.0)
+actuarial-science-ai999x 1.6.0 (Rust build, ax-engine 1.6.0)
 ```
 
 ### 2.2 Find a capability
@@ -130,7 +130,7 @@ act_buhlmann_credibility                 Buhlmann credibility premium (known str
 act_buhlmann_empirical                   Empirical Buhlmann credibility from a data table
 act_buhlmann_straub                      Buhlmann-Straub credibility with exposures
 act_cape_cod                             Cape Cod (Stanard-Buhlmann) reserve
-… 83 more
+… 85 more
 ```
 
 ### 2.4 What a capability needs
@@ -2708,7 +2708,7 @@ a_due = 2.821185617
 
 **What the worked example means:** This calculation determines the level annual net premium, payable at the start of each year while the insured is alive, for a fully discrete whole life insurance policy. Using the equivalence principle, the result 306.842 balances the present value of benefits against the present value of premiums. The inputs include a death probability list ending in one, an interest rate of 0.05, and a sum insured of 1000. The intermediate values are the whole life insurance factor 0.865658 and the annuity-due factor 2.82119. A higher interest rate reduces both the insurance value and the required premium, while a larger sum insured directly increases the premium without changing the underlying factors.
 
-### Ratemaking (2)
+### Ratemaking (4)
 
 <a id="act_pure_premium_rate"></a>
 
@@ -2785,6 +2785,82 @@ permissible = 0.8
 ```
 
 **What the worked example means:** This calculation determines the indicated rate change by comparing the projected ultimate losses and LAE against earned premium at current rates. The result, -0.0625, reflects the adjustment needed to align the actual loss experience with the target permissible loss ratio. This process incorporates fixed expense ratios, variable expense ratios, and profit provisions to ensure the new rates cover all expected costs and desired margins.
+
+<a id="act_trend_projection"></a>
+
+#### Loss and premium trend factors to a future period, `act_trend_projection`
+
+The trend period of each experience year (from its midpoint to the average date of the future period), the compound trend factor at an annual trend rate, and the trended losses or premiums.
+
+$$
+t_y = D - (y + \tfrac12),\qquad \text{trended}_y = X_y\,(1 + g)^{t_y}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `amounts` | in | losses (or premiums) of each experience year (a list) | - |
+| `years` | in | experience years (whole numbers, a list) | - |
+| `trend` | in | annual trend rate (3% or 0.03; negative for a falling trend) | - |
+| `to_date` | in | average date of the future period as a decimal year (2025.5 = 1 July 2025) | - |
+| `periods` | out | trend period of each year in years: to_date - (year + 0.5) (a list) | - |
+| `factors` | out | trend factor (1 + trend)^period of each year (a list) | - |
+| `trended` | out | trended amount of each year (a list) | - |
+| `total_trended` | out | total of the trended amounts | - |
+
+**Applies when:** one year per amount; whole years; amounts >= 0; -100% < trend < 100%; to_date >= year + 0.5.
+
+```shell
+$ actuarial-science solve act_trend_projection "amounts=[100000, 120000]" "years=[2022, 2023]" trend=0.05 to_date=2025.5
+periods = [3.0,2.0]
+factors = [1.157625,1.1025]
+trended = [115762.5,132300.0]
+total_trended = 248062.5
+  by: Loss and premium trend factors to a future period  (period = to_date - (year + 0.5); factor = (1 + trend)^period; trended = amount x factor)
+  trend = 0.05
+  to_date = 2025.5
+  assumes: one year per amount; whole years; amounts >= 0; -100% < trend < 100%; to_date >= year + 0.5
+```
+
+In the worked example, amounts = [100000, 120000], years = [2022, 2023], trend = 0.05, to_date = 2025.5 go through the equation above and give periods = [3, 2], factors = [1.157625, 1.1025], trended = [115762.5, 132300], total_trended = 248062.5. It applies only when one year per amount; whole years; amounts >= 0; -100% < trend < 100%; to_date >= year + 0.5: outside that it says what is wrong instead of returning a number.
+
+<a id="act_on_level_premium"></a>
+
+#### On-level earned premium by the parallelogram method, `act_on_level_premium`
+
+The average rate level of each calendar year's earned premium under past rate changes (policies written evenly, earned evenly over their term), the on-level factor that brings it to the current rate level, and the earned premium at current rates.
+
+$$
+\bar L_Y = \sum_j \big(A(t_{j+1} - Y) - A(t_j - Y)\big) L_j,\qquad \text{factor}_Y = \frac{L_{\mathrm{current}}}{\bar L_Y}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `dates` | in | effective dates of the rate changes as decimal years, increasing (2022.5 = 1 July 2022) | - |
+| `changes` | in | rate change at each date as a decimal (0.05 = +5%, -0.03 = -3%) | - |
+| `years` | in | calendar years of the earned premium (whole numbers, increasing) | - |
+| `EP` | in | earned premium of each calendar year (at the rates then charged) | - |
+| `T` | in | policy term in years, at most 1 (1 = annual, 0.5 = six months) | - |
+| `average_level` | out | average rate level of each calendar year's earned premium (a list) | - |
+| `factors` | out | on-level factor of each year: current level / average level (a list) | - |
+| `on_level_EP` | out | earned premium at current rate level of each year (a list) | - |
+| `total_on_level_EP` | out | total earned premium at current rate level | - |
+| `current_level` | out | current cumulative rate level (1 before the first change) | - |
+
+**Applies when:** one change per date, dates increasing; -100% < change < 100%; whole calendar years, increasing; earned premiums >= 0; 0 < T <= 1.
+
+```shell
+$ actuarial-science solve act_on_level_premium "dates=[2022.5]" "changes=[0.1]" "years=[2022, 2023, 2024]" "EP=[1000, 1100, 1200]" T=1
+average_level = [1.0125,1.0875,1.1]
+factors = [1.08641975309,1.01149425287,1.0]
+on_level_EP = [1086.41975309,1112.64367816,1200.0]
+total_on_level_EP = 3399.063431
+current_level = 1.1
+  by: On-level earned premium by the parallelogram method  (share of CY earned exposure written before d: (d+T)^2/(2T), T/2 + d, 1 - (1-d)^2/(2T) on the three parts of the parallelogram; average level = sum of shares x levels; factor = current level / average level)
+  T = 1
+  assumes: one change per date, dates increasing; -100% < change < 100%; whole calendar years, increasing; earned premiums >= 0; 0 < T <= 1
+```
+
+In the worked example, dates = [2022.5], changes = [0.1], years = [2022, 2023, 2024], EP = [1000, 1100, 1200], T = 1 go through the equation above and give average_level = [1.0125, 1.0875, 1.1], factors = [1.086419753, 1.011494253, 1], on_level_EP = [1086.419753, 1112.643678, 1200], total_on_level_EP = 3399.063431. It applies only when one change per date, dates increasing; -100% < change < 100%; whole calendar years, increasing; earned premiums >= 0; 0 < T <= 1: outside that it says what is wrong instead of returning a number.
 
 ### Reserves (8)
 

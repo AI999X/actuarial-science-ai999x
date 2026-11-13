@@ -4519,3 +4519,242 @@ for _k, _vals in _EXV.items():
     if _k in PROCEDURES:
         for _e, _v in zip(PROCEDURES[_k]["examples"], _vals):
             _e["outputs"].update(_v)
+
+
+# ================================================================================================ RATEMAKING: ON-LEVEL AND TREND
+# Conventions: dates are decimal years (2022.5 = 1 July 2022, 2022.25 = 1 April 2022); policies have a term T of at
+# most one year (1 = annual, 0.5 = six months) and are written evenly through time; a rate change applies to policies
+# WRITTEN on or after its effective date. Calendar year Y runs from Y to Y + 1. The rate level before the first change
+# is 1; after change k it is the product of (1 + c_j) for j <= k; the current level is the level after the last change.
+def _earned_share(d, T):
+    """Share of one calendar year's earned exposure that comes from policies written before time d (d measured from
+    the start of the year): the area of the parallelogram diagram to the left of the line written at d."""
+    if d <= -T:
+        return 0.0
+    if d <= 0.0:
+        return (d + T) * (d + T) / (2.0 * T)
+    if d <= 1.0 - T:
+        return T / 2.0 + d
+    if d <= 1.0:
+        return 1.0 - (1.0 - d) * (1.0 - d) / (2.0 * T)
+    return 1.0
+
+
+def _on_level_check(dates, changes, years, EP, T):
+    _need(len(dates) == len(changes) and len(dates) >= 1, "give one rate change for every effective date")
+    _need(len(years) == len(EP) and len(years) >= 1, "give one earned premium for every calendar year")
+    _need(_isnum(T) and 0 < T <= 1, "the policy term T must lie between 0 and 1 year (0.5 = six months)")
+    for k in range(len(dates)):
+        _need(_isnum(dates[k]) and _isnum(changes[k]), "every date and rate change must be a finite number")
+        _need(-1 < changes[k] < 1, "each rate change is a decimal between -100% and +100% (0.05 = +5%)")
+        if k > 0:
+            _need(dates[k] > dates[k - 1], "the effective dates must increase")
+    for k in range(len(years)):
+        _need(_isnum(years[k]) and years[k] == math.floor(years[k]), "each calendar year must be a whole number")
+        _need(_isnum(EP[k]) and EP[k] >= 0, "earned premiums must be zero or positive")
+        if k > 0:
+            _need(years[k] > years[k - 1], "the calendar years must increase")
+
+
+def _written_share(d, T):
+    # the wrong variant's share: the calendar year's WRITINGS before d (the earning lag ignored)
+    return min(max(d, 0.0), 1.0)
+
+
+def _on_level(dates, changes, years, EP, T, by_writing):
+    _on_level_check(dates, changes, years, EP, T)
+    levels = [1.0]
+    for c in changes:
+        levels.append(levels[-1] * (1.0 + c))
+    current = levels[-1]
+    avg = []
+    factors = []
+    olep = []
+    total = 0.0
+    for k in range(len(years)):
+        a = 0.0
+        prev = 0.0
+        for j in range(len(dates)):
+            if by_writing:
+                s = _written_share(dates[j] - years[k], T)
+            else:
+                s = _earned_share(dates[j] - years[k], T)
+            a += (s - prev) * levels[j]
+            prev = s
+        a += (1.0 - prev) * current
+        f = current / a
+        avg.append(a)
+        factors.append(f)
+        olep.append(EP[k] * f)
+        total += EP[k] * f
+    return _out(average_level=avg, factors=factors, on_level_EP=olep, total_on_level_EP=total, current_level=current)
+
+
+def on_level_premium(dates, changes, years, EP, T):
+    return _on_level(dates, changes, years, EP, T, False)
+
+
+def _ref_on_level_premium(dates, changes, years, EP, T):
+    from fractions import Fraction as Fr
+    # exact decimals; each level's share of a calendar year is the integral, over its writing window, of the part of
+    # a policy's term that falls inside the year (divided by T): piecewise linear, so the trapezoid rule on its
+    # breakpoints is exact
+    q = lambda v: Fr(repr(float(v)))
+    Tq = q(T)
+    lv = [Fr(1)]
+    for c in changes:
+        lv.append(lv[-1] * (1 + q(c)))
+    avg, fac, ole = [], [], []
+    for y, ep in zip(years, EP):
+        Y = q(y)
+        lo, hi = Y - Tq, Y + 1
+        def ov(s):
+            return max(Fr(0), min(s + Tq, Y + 1) - max(s, Y)) / Tq
+        cuts = [lo] + [min(max(q(d), lo), hi) for d in dates] + [hi]
+        a = Fr(0)
+        for j in range(len(cuts) - 1):
+            u, w = cuts[j], cuts[j + 1]
+            pts = sorted(set([u, w] + [p for p in (Y - Tq, Y, Y + 1 - Tq, Y + 1) if u < p < w]))
+            area = sum(((pts[i + 1] - pts[i]) * (ov(pts[i]) + ov(pts[i + 1])) / 2 for i in range(len(pts) - 1)), Fr(0))
+            a += area * lv[j]
+        f = lv[-1] / a
+        avg.append(float(a))
+        fac.append(float(f))
+        ole.append(float(q(ep) * f))
+    return {"average_level": avg, "factors": fac, "on_level_EP": ole, "total_on_level_EP": float(sum(Fr(x) for x in ole)),
+            "current_level": float(lv[-1])}
+
+
+def _rand_on_level(rng):
+    T = rng.choice([1.0, 1.0, 0.5])
+    y0 = float(rng.randint(2012, 2022))
+    n = rng.randint(1, 3)
+    dates = sorted(y0 - 1.0 + 0.25 * k for k in rng.sample(range(13), n))
+    changes = []
+    for _ in range(n):
+        c = _sig(rng.uniform(-0.1, 0.15), 2)
+        changes.append(c if abs(c) >= 0.01 else 0.05)
+    return {"dates": dates, "changes": changes, "years": [y0, y0 + 1.0, y0 + 2.0],
+            "EP": [_sig(_lu(rng, 1e4, 1e7), 4) for _ in range(3)], "T": T}
+
+
+_add("act_on_level_premium",
+     name="On-level earned premium by the parallelogram method", topic="ratemaking / premium adjustments",
+     purpose="The average rate level of each calendar year's earned premium under past rate changes (policies written evenly, earned evenly over their term), the on-level factor that brings it to the current rate level, and the earned premium at current rates.",
+     inputs=[_vecin("dates", "effective dates of the rate changes as decimal years, increasing (2022.5 = 1 July 2022)", 1, 40),
+             _vecin("changes", "rate change at each date as a decimal (0.05 = +5%, -0.03 = -3%)", 1, 40),
+             _vecin("years", "calendar years of the earned premium (whole numbers, increasing)", 1, 40),
+             _vecin("EP", "earned premium of each calendar year (at the rates then charged)", 1, 40),
+             _numin("T", "policy term in years, at most 1 (1 = annual, 0.5 = six months)")],
+     outputs=[_o("average_level", "average rate level of each calendar year's earned premium (a list)"),
+              _o("factors", "on-level factor of each year: current level / average level (a list)"),
+              _o("on_level_EP", "earned premium at current rate level of each year (a list)"),
+              _o("total_on_level_EP", "total earned premium at current rate level"),
+              _o("current_level", "current cumulative rate level (1 before the first change)")],
+     primary="factors",
+     conditions=["one change per date, dates increasing", "-100% < change < 100%", "whole calendar years, increasing",
+                 "earned premiums >= 0", "0 < T <= 1"],
+     method="share of CY earned exposure written before d: (d+T)^2/(2T), T/2 + d, 1 - (1-d)^2/(2T) on the three parts of the parallelogram; average level = sum of shares x levels; factor = current level / average level",
+     latex=r"\bar L_Y = \sum_j \big(A(t_{j+1} - Y) - A(t_j - Y)\big) L_j,\qquad \text{factor}_Y = \frac{L_{\mathrm{current}}}{\bar L_Y}",
+     run=on_level_premium, reference=_ref_on_level_premium,
+     wrong=lambda dates, changes, years, EP, T: _on_level(dates, changes, years, EP, T, True),
+     rand=_rand_on_level,
+     phrases=("On-level earned premium", "On-level premium", "Parallelogram method"),
+     examples=[_ex({"dates": [2022.5], "changes": [0.1], "years": [2022.0, 2023.0, 2024.0], "EP": [1000.0, 1100.0, 1200.0], "T": 1.0},
+                   {"average_level": [1.0125, 1.0875, 1.1], "factors": [1.08641975309, 1.01149425287, 1.0],
+                    "on_level_EP": [1086.41975309, 1112.64367816, 1200.0], "total_on_level_EP": 3399.06343125,
+                    "current_level": 1.1}),
+               _ex({"dates": [2021.25, 2022.0], "changes": [0.05, -0.02], "years": [2021.0, 2022.0], "EP": [500.0, 520.0], "T": 0.5},
+                   {"average_level": [1.025, 1.03425], "factors": [1.00390243902, 0.994923857868],
+                    "on_level_EP": [501.951219512, 517.360406091], "total_on_level_EP": 1019.3116256,
+                    "current_level": 1.029})],
+     level="intermediate",
+     extra_q=({"q": "On-level earned premium: dates = [2022.5], changes = [0.1], years = [2022, 2023, 2024], EP = [1000, 1100, 1200], T = 2", "outcome": "INVALID_INPUT"},
+              {"q": "On-level earned premium: dates = [2022.5, 2022], changes = [0.1, 0.05], years = [2022], EP = [1000], T = 1", "outcome": "INVALID_INPUT"},
+              {"q": "Parallelogram method: dates = [2022.5], changes = [0.1], years = [2022, 2023, 2024], EP = [1000, 1100, 1200], T = 1", "like": 0}),
+     weak="the same parallelogram areas integrated exactly from the policy-overlap definition (trapezoids on the breakpoints, exact fractions) instead of the closed-form areas")
+
+
+# Trend: an experience year's amounts (accident-year losses, or calendar-year earned premium) are centred at the middle
+# of the year, y + 0.5; the trend period runs from there to the average date of the future period (a decimal year:
+# for annual policies written evenly for one year from an effective date E, the average accident date is E + 1).
+def trend_projection(amounts, years, trend, to_date):
+    _need(len(amounts) == len(years) and len(years) >= 1, "give one experience year for every amount")
+    _need(_isnum(trend) and -1 < trend < 1, "the annual trend must lie between -100% and 100% (write 3% or 0.03)")
+    _fin(to_date)
+    periods = []
+    factors = []
+    trended = []
+    total = 0.0
+    for k in range(len(years)):
+        y = years[k]
+        x = amounts[k]
+        _need(_isnum(y) and y == math.floor(y), "each experience year must be a whole number")
+        _need(_isnum(x) and x >= 0, "the amounts must be zero or positive")
+        t = to_date - (y + 0.5)
+        _need(t >= 0, "the projection date must not lie before the middle of an experience year")
+        f = (1.0 + trend) ** t
+        periods.append(t)
+        factors.append(f)
+        trended.append(x * f)
+        total += x * f
+    return _out(periods=periods, factors=factors, trended=trended, total_trended=total)
+
+
+def _ref_trend_projection(amounts, years, trend, to_date):
+    import mpmath
+    # 40-digit arithmetic: the factor as exp(t log(1 + trend)) from the written decimals
+    periods, factors, trended = [], [], []
+    with mpmath.workdps(40):
+        g = mpmath.log(1 + mpmath.mpf(repr(float(trend))))
+        tot = mpmath.mpf(0)
+        for x, y in zip(amounts, years):
+            t = mpmath.mpf(repr(float(to_date))) - mpmath.mpf(repr(float(y))) - mpmath.mpf("0.5")
+            f = mpmath.exp(t * g)
+            v = mpmath.mpf(repr(float(x))) * f
+            tot += v
+            periods.append(float(t))
+            factors.append(float(f))
+            trended.append(float(v))
+        total = float(tot)
+    return {"periods": periods, "factors": factors, "trended": trended, "total_trended": total}
+
+
+def _rand_trend(rng):
+    n = rng.randint(1, 5)
+    y0 = float(rng.randint(2010, 2022))
+    tr = _sig(rng.uniform(0.01, 0.09), 2) * rng.choice([1, 1, -1])
+    return {"amounts": [_sig(_lu(rng, 1e4, 1e7), 4) for _ in range(n)], "years": [y0 + k for k in range(n)],
+            "trend": tr, "to_date": y0 + n + rng.choice([1.0, 1.5, 2.0, 2.25, 3.0])}
+
+
+_add("act_trend_projection",
+     name="Loss and premium trend factors to a future period", topic="ratemaking / loss and premium adjustments",
+     purpose="The trend period of each experience year (from its midpoint to the average date of the future period), the compound trend factor at an annual trend rate, and the trended losses or premiums.",
+     inputs=[_vecin("amounts", "losses (or premiums) of each experience year (a list)", 1, 40),
+             _vecin("years", "experience years (whole numbers, a list)", 1, 40),
+             _numin("trend", "annual trend rate (3% or 0.03; negative for a falling trend)", pct=True),
+             _numin("to_date", "average date of the future period as a decimal year (2025.5 = 1 July 2025)")],
+     outputs=[_o("periods", "trend period of each year in years: to_date - (year + 0.5) (a list)"),
+              _o("factors", "trend factor (1 + trend)^period of each year (a list)"),
+              _o("trended", "trended amount of each year (a list)"),
+              _o("total_trended", "total of the trended amounts")],
+     primary="factors",
+     conditions=["one year per amount", "whole years", "amounts >= 0", "-100% < trend < 100%", "to_date >= year + 0.5"],
+     method="period = to_date - (year + 0.5); factor = (1 + trend)^period; trended = amount x factor",
+     latex=r"t_y = D - (y + \tfrac12),\qquad \text{trended}_y = X_y\,(1 + g)^{t_y}",
+     run=trend_projection, reference=_ref_trend_projection,
+     wrong=lambda amounts, years, trend, to_date: (lambda ts: _out(periods=ts, factors=[1 + trend * t for t in ts], trended=[x * (1 + trend * t) for x, t in zip(amounts, ts)], total_trended=sum(x * (1 + trend * t) for x, t in zip(amounts, ts))))([to_date - y - 0.5 for y in years]),
+     rand=_rand_trend,
+     phrases=("Trend factors", "Loss trend", "Premium trend"),
+     examples=[_ex({"amounts": [100000.0, 120000.0], "years": [2022.0, 2023.0], "trend": 0.05, "to_date": 2025.5},
+                   {"periods": [3.0, 2.0], "factors": [1.157625, 1.1025], "trended": [115762.5, 132300.0],
+                    "total_trended": 248062.5}),
+               _ex({"amounts": [50000.0], "years": [2021.0], "trend": -0.02, "to_date": 2024.0},
+                   {"periods": [2.5], "factors": [0.950747493712], "trended": [47537.3746856],
+                    "total_trended": 47537.3746856})],
+     level="beginner",
+     extra_q=({"q": "Loss trend: amounts = [100000, 120000], years = [2022, 2023], trend = 5%, to_date = 2025.5", "like": 0},
+              {"q": "Trend factors: amounts = [100000, 120000], years = [2022, 2023], trend = 5%, to_date = 2022", "outcome": "INVALID_INPUT"},
+              {"q": "Trend factors: amounts = [100000, 120000], years = [2022, 2023], trend = 5, to_date = 2025.5", "outcome": "UNRECOGNIZED_FORMAT"}),
+     weak="the same compound factor evaluated as exp(t ln(1 + g)) in 40-digit arithmetic")
