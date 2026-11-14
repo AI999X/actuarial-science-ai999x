@@ -186,14 +186,9 @@ fn field(s: &Solved, f: &FieldSpec) -> Option<Figure> {
         return None;
     }
     if f.log_shade {
-        // the scale's ends as values, not their logarithms
-        let (llo, lhi) = (lo.log10(), hi.log10());
-        let shown = format!("light {} to dark {}</text>", num(k::snap(llo, lhi)), num(lhi));
-        let real = format!("light {} to dark {} (log)</text>", num(lo), num(hi));
-        if !body.contains(&shown) {
-            return None;
-        }
-        body = body.replacen(&shown, &real, 1);
+        // the scale's ends as values, not their logarithms (field() writes them beside its shaded bar since
+        // 2026-11-13; the old "light a to dark b" text this replaced is gone, and with it, unnoticed, these maps)
+        body = k::relabel_scale(&body, &num(lo), &format!("{} (log)", num(hi)));
     }
     let title = cap1(&format!("{} over {} and {}", out_meaning(s, f.out), f.x, f.y));
     let caption = format!("{} ({}) over {} from {} to {} and {} from {} to {}{}: each of the {} cells is one run of the \

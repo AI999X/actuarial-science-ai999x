@@ -25,7 +25,6 @@ const KINDS: &[(&str, &[&str])] = &[
     ("act_exponential_mle", &["data"]),
     ("act_fractional_age", &["field"]),
     ("act_increasing_decreasing_annuity", &["field"]),
-    ("act_individual_risk_model", &["sensitivity"]),
     ("act_life_expectancy", &["io"]),
     ("act_life_table_functions", &["series"]),
     ("act_limited_fluctuation_full_credibility", &["field", "n-full-vs-p"]),
