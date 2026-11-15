@@ -3103,10 +3103,6 @@ $$
 - **Assumes:** one benefit per probability; $0  \leq  q  \leq  1$; $b > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![var (variance sum q (1-q) b^2) as value 3 of q (claim probabilities of the policies (a list)) moves from 0 to 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-individual-risk-model-sensitivity)
-
-*var (variance sum q (1-q) b^2) as value 3 of q (claim probabilities of the policies (a list)) moves from 0 to 0.07, the other values as given ([0.01, 0.02, 0.05]); 41 runs of actuarial-science-ai999x. Other inputs: b = [10000.0, 5000.0, 2000.0]. Marked: the worked example, q[3] = 0.05, var = 1.67e+06.*
-
 ```python
 actuarial_science_ai999x.solve('act_individual_risk_model', q=[0.01, 0.02, 0.05], b=[10000.0, 5000.0, 2000.0])
 # -> mean = 300, var = 1.67e+06, prob_no_claim = 0.92169   (SOLVED)
