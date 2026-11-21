@@ -1,6 +1,6 @@
 # actuarial-science: the Actuarial Science and Insurance program, user guide
 
-**actuarial-science-ai999x 1.6.6**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
+**actuarial-science-ai999x 1.6.7**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
 
 Actuarial Science and Insurance covers life tables and survival models, life insurances and annuities, net and gross premiums, reserves and Thiele's equation, interest theory, loss models with deductibles and limits, Panjer's recursion, VaR and TVaR, credibility and loss reserving (chain-ladder, Bornhuetter-Ferguson, Cape Cod, Mack). This guide is about `actuarial-science`, the model as a self-contained program for Windows and Linux: 93 capabilities in 15 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model's page (https://www.ai999x.com/models/actuarial-science-ai999x/); the Python package (`pip install actuarial-science-ai999x`) has its own guide. Every command output printed here is what the program printed.
 
@@ -96,7 +96,7 @@ Prints the model, its version and that this is the Rust build.
 
 ```shell
 $ actuarial-science --version
-actuarial-science-ai999x 1.6.6 (Rust build, ax-engine 1.6.6)
+actuarial-science-ai999x 1.6.7 (Rust build, ax-engine 1.6.7)
 ```
 
 ### 2.2 Find a capability
