@@ -240,9 +240,13 @@ $$
 - **Assumes:** $0 < i < 1$; $1  \leq  m  \leq  365$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![d (effective annual discount rate) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-interest-rate-conversion-curve)
+![Effective annual discount rate as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-interest-rate-conversion-live-1)
 
-*d (effective annual discount rate) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. Other inputs as in the worked example: m = 12. 41 points computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, d = 0.047619.*
+*Effective annual discount rate as i runs from 0.0125 to 0.0875, every other input as you entered it (41 solutions). Marked: your i = 0.05 gives d = 0.04762. Your inputs: i = 0.05, m = 12.*
+
+![Nominal interest rate convertible m-thly as m runs from 1 to 31, every other input as you entered it (17 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-interest-rate-conversion-live-2)
+
+*Nominal interest rate convertible m-thly as m runs from 1 to 31, every other input as you entered it (17 solutions). Marked: your m = 12 gives i_m = 0.04889. Your inputs: i = 0.05, m = 12.*
 
 ```python
 actuarial_science_ai999x.solve('act_interest_rate_conversion', i=0.05, m=12)
@@ -292,13 +296,21 @@ $$
 - **Assumes:** 0 < rate < 1; $1  \leq  m  \leq  365$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![i (annual effective interest rate) against m (conversion periods per year (12 = monthly)) from 1 to 24](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-nominal-to-effective-rate-curve)
+![i (annual effective interest rate) over rate from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-nominal-to-effective-rate-field)
 
-*i (annual effective interest rate) against m (conversion periods per year (12 = monthly)) from 1 to 24. One curve for each value of rate (nominal annual rate (6% or 0.06)): 0.06, 0.03, 0.12. Other inputs as in the worked example: kind = interest. 24 points per curve computed by actuarial-science-ai999x; marked: the worked example, m = 12, i = 0.0616778.*
+*i (annual effective interest rate) over rate from 0.03 to 0.09 and m from 1 to 23: each of the 221 cells is one run of the model, shaded by its value (light 0.03 to dark 0.09398); refused combinations are left blank. Marked: these inputs, rate = 0.06, m = 12, i = 0.06168. Your inputs: rate = 0.06, m = 12, kind = interest.*
 
-![i (annual effective interest rate) over rate (nominal annual rate (6% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-nominal-to-effective-rate-field)
+![Annual effective interest rate as rate runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-nominal-to-effective-rate-live-1)
 
-*i (annual effective interest rate) over rate (nominal annual rate (6% or 0.06)) from 0.03 to 0.09 and m (conversion periods per year (12 = monthly)) from 1 to 24: each of the 21 × 12 cells is one run of actuarial-science-ai999x, shaded by its value (light 0.03 to dark 0.0939901); iso-lines at i = 0.04, 0.06, 0.08. Other inputs as in the worked example: kind = interest. Marked: the worked example, rate = 0.06, m = 12, i = 0.0616778.*
+*Annual effective interest rate as rate runs from 0.015 to 0.105, every other input as you entered it (41 solutions). Marked: your rate = 0.06 gives i = 0.06168. Your inputs: rate = 0.06, m = 12, kind = interest.*
+
+![Annual effective interest rate for every choice of kind, every other input as you entered it (highlighted: your choice)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-nominal-to-effective-rate-live-2)
+
+*Annual effective interest rate for every choice of kind, every other input as you entered it (highlighted: your choice). interest: 0.06168; discount: 0.062. Your inputs: rate = 0.06, m = 12, kind = interest.*
+
+![Annual effective interest rate as m runs from 1 to 31, every other input as you entered it (17 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-nominal-to-effective-rate-live-3)
+
+*Annual effective interest rate as m runs from 1 to 31, every other input as you entered it (17 solutions). Marked: your m = 12 gives i = 0.06168. Your inputs: rate = 0.06, m = 12, kind = interest.*
 
 ```python
 actuarial_science_ai999x.solve('act_nominal_to_effective_rate', rate=0.06, m=12, kind='interest')
@@ -344,9 +356,9 @@ $$
 - **Assumes:** $0 < \delta < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![i (annual effective interest rate) against delta (constant force of interest per year (0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-force-of-interest-curve)
+![Annual effective interest rate as δ runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-force-of-interest-live-1)
 
-*i (annual effective interest rate) against delta (constant force of interest per year (0.05 or 5%)) from 0.025 to 0.075. 31 points computed by actuarial-science-ai999x; marked: the worked example, delta = 0.05, i = 0.0512711.*
+*Annual effective interest rate as δ runs from 0.0125 to 0.0875, every other input as you entered it (41 solutions). Marked: your δ = 0.05 gives i = 0.05127. Your inputs: delta = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_force_of_interest', delta=0.05)
@@ -393,9 +405,13 @@ $$
 - **Assumes:** $0 < i < 1$; $0  \leq  t  \leq  200$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![AV (accumulated value P(1+i)^t) against t (time in years) from 1 to 100 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-accumulated-value-curve)
+![AV as P runs from 250 to 1750, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-accumulated-value-live-1)
 
-*AV (accumulated value P(1+i)^t) against t (time in years) from 1 to 100 on a logarithmic axis. One curve for each value of i (annual effective interest rate (5% or 0.05)): 0.05, 0.025, 0.1. Other inputs as in the worked example: P = 1000.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, t = 10, AV = 1628.89.*
+*AV as P runs from 250 to 1750, every other input as you entered it (41 solutions). Marked: your P = 1000 gives AV = 1629. Your inputs: P = 1000, i = 0.05, t = 10.*
+
+![AV as t runs from 2](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-accumulated-value-live-2)
+
+*AV as t runs from 2.5 to 17.5, every other input as you entered it (29 solutions). Marked: your t = 10 gives AV = 1629. Your inputs: P = 1000, i = 0.05, t = 10.*
 
 ```python
 actuarial_science_ai999x.solve('act_accumulated_value', P=1000.0, i=0.05, t=10.0)
@@ -443,17 +459,21 @@ $$
 - **Assumes:** $n  \geq  1$; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![a_n (present value of an annuity-immediate a_n) against n (number of annual payments (term in years)), with i = 0](https://huggingface.co/AI999X/actuarial-science-ai999x/resolve/main/figures/act-annuity-certain-a-n-vs-n.svg)
+![a_n (present value of an annuity-immediate a_n) over n from 1 to 19 and i from 0](https://huggingface.co/AI999X/actuarial-science-ai999x/resolve/main/figures/act-annuity-certain-field.svg)
 
-*a_n (present value of an annuity-immediate a_n) against n (number of annual payments (term in years)), with i = 0.05. 12 points computed by actuarial-science-ai999x; marked: n = 10, a_n = 7.72173.*
+*a_n (present value of an annuity-immediate a_n) over n from 1 to 19 and i from 0.005 to 0.5 (logarithmic vertical axis): each of the 143 cells is one run of the model, shaded by its value (light 0.6667 to dark 18.08); refused combinations are left blank. Marked: these inputs, n = 10, i = 0.05, a_n = 7.722. Your inputs: n = 10, i = 0.05.*
 
-![a_n (present value of an annuity-immediate a_n) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-annuity-certain-curve)
+![a_n (present value of an annuity-immediate a_n) against n from 1 to 20, with i = 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-annuity-certain-a-n-vs-n)
 
-*a_n (present value of an annuity-immediate a_n) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of n (number of annual payments (term in years)): 10, 5, 20. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, a_n = 7.72173.*
+*a_n (present value of an annuity-immediate a_n) against n from 1 to 20, with i = 0.05: 20 points, each computed by the model. Marked: n = 10, a_n = 7.722. Your inputs: n = 10, i = 0.05.*
 
-![a_n (present value of an annuity-immediate a_n) over n (number of annual payments (term in years)) from 1 to 20 and i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-annuity-certain-field)
+![Present value of an annuity-immediate a_n as n runs from 1 to 30, every other input as you entered it (30 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-annuity-certain-live-1)
 
-*a_n (present value of an annuity-immediate a_n) over n (number of annual payments (term in years)) from 1 to 20 and i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 (logarithmic vertical axis): each of the 20 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 0.666667 to dark 18.9874); iso-lines at a_n = 5, 10, 15. Marked: the worked example, n = 10, i = 0.05, a_n = 7.72173.*
+*Present value of an annuity-immediate a_n as n runs from 1 to 30, every other input as you entered it (30 solutions). Marked: your n = 10 gives a_n = 7.722. Your inputs: n = 10, i = 0.05.*
+
+![Present value of an annuity-immediate a_n as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-annuity-certain-live-2)
+
+*Present value of an annuity-immediate a_n as i runs from 0.0125 to 0.0875, every other input as you entered it (29 solutions). Marked: your i = 0.05 gives a_n = 7.722. Your inputs: n = 10, i = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_annuity_certain', n=10, i=0.05)
@@ -500,9 +520,9 @@ $$
 - **Assumes:** $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![a_inf (perpetuity-immediate 1/i) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-perpetuity-curve)
+![Perpetuity-immediate 1/i as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-perpetuity-live-1)
 
-*a_inf (perpetuity-immediate 1/i) against i (annual effective interest rate (5% or 0.05)) from 0.025 to 0.075. 31 points computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, a_inf = 20.*
+*Perpetuity-immediate 1/i as i runs from 0.0125 to 0.0875, every other input as you entered it (41 solutions). Marked: your i = 0.05 gives a_inf = 20. Your inputs: i = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_perpetuity', i=0.05)
@@ -549,13 +569,17 @@ $$
 - **Assumes:** $n  \geq  1$; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Ia (increasing annuity-immediate (Ia)_n) against n (term in years) from 1 to 20](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-increasing-decreasing-annuity-curve)
+![Ia (increasing annuity-immediate (Ia)_n) over n from 1 to 19 and i from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-increasing-decreasing-annuity-field)
 
-*Ia (increasing annuity-immediate (Ia)_n) against n (term in years) from 1 to 20. One curve for each value of i (annual effective interest rate (5% or 0.05)): 0.05, 0.025, 0.1. 20 points per curve computed by actuarial-science-ai999x; marked: the worked example, n = 10, Ia = 39.3738.*
+*Ia (increasing annuity-immediate (Ia)_n) over n from 1 to 19 and i from 0.005 to 0.5 (logarithmic vertical axis): each of the 143 cells is one run of the model, shaded by its value (light 0.6667 to dark 178.1); refused combinations are left blank. Marked: these inputs, n = 10, i = 0.05, Ia = 39.37. Your inputs: n = 10, i = 0.05.*
 
-![Ia (increasing annuity-immediate (Ia)_n) over n (term in years) from 1 to 20 and i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-increasing-decreasing-annuity-field)
+![Increasing annuity-immediate (Ia)_n as n runs from 1 to 30, every other input as you entered it (30 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-increasing-decreasing-annuity-live-1)
 
-*Ia (increasing annuity-immediate (Ia)_n) over n (term in years) from 1 to 20 and i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 (logarithmic vertical axis): each of the 20 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 0.666667 to dark 196.22); iso-lines at Ia = 50, 100, 150. Marked: the worked example, n = 10, i = 0.05, Ia = 39.3738.*
+*Increasing annuity-immediate (Ia)_n as n runs from 1 to 30, every other input as you entered it (30 solutions). Marked: your n = 10 gives Ia = 39.37. Your inputs: n = 10, i = 0.05.*
+
+![Increasing annuity-immediate (Ia)_n as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-increasing-decreasing-annuity-live-2)
+
+*Increasing annuity-immediate (Ia)_n as i runs from 0.0125 to 0.0875, every other input as you entered it (29 solutions). Marked: your i = 0.05 gives Ia = 39.37. Your inputs: n = 10, i = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_increasing_decreasing_annuity', n=10, i=0.05)
@@ -605,9 +629,13 @@ $$
 - **Assumes:** $L > 0$; $0 < i < 1$; $1  \leq  t  \leq  n$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![R (level annual payment) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-loan-amortization-curve)
+![Level annual payment as n runs from 5 to 40, every other input as you entered it (36 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-loan-amortization-live-1)
 
-*R (level annual payment) against i (annual effective interest rate (5% or 0.05)) from 0.006 to 0.6 on a logarithmic axis. One curve for each value of L (loan amount): 100000, 50000, 200000. Other inputs as in the worked example: n = 20, t = 5. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.06, R = 8718.46.*
+*Level annual payment as n runs from 5 to 40, every other input as you entered it (36 solutions). Marked: your n = 20 gives R = 8718. Your inputs: L = 100000, i = 0.06, n = 20, t = 5.*
+
+![Level annual payment as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-loan-amortization-live-2)
+
+*Level annual payment as i runs from 0.015 to 0.105, every other input as you entered it (29 solutions). Marked: your i = 0.06 gives R = 8718. Your inputs: L = 100000, i = 0.06, n = 20, t = 5.*
 
 ```python
 actuarial_science_ai999x.solve('act_loan_amortization', L=100000.0, i=0.06, n=20, t=5)
@@ -654,9 +682,13 @@ $$
 - **Assumes:** $0 < PV < n$ R; yield below 99%
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![i (yield rate (annual effective)) against n (number of annual payments) from 1 to 20](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-annuity-yield-curve)
+![Yield rate as PV runs from 1930 to 9749, every other input as you entered it (28 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-annuity-yield-live-1)
 
-*i (yield rate (annual effective)) against n (number of annual payments) from 1 to 20. One curve for each value of R (level annual payment): 1000, 2000. Other inputs as in the worked example: PV = 7721.73. 13 points per curve computed by actuarial-science-ai999x; marked: the worked example, n = 10, i = 0.0500001.*
+*Yield rate as PV runs from 1930 to 9749, every other input as you entered it (28 solutions). Marked: your PV = 7722 gives i = 0.05. Your inputs: PV = 7721.73, R = 1000, n = 10.*
+
+![Yield rate as R runs from 785](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-annuity-yield-live-2)
+
+*Yield rate as R runs from 785.7 to 1750, every other input as you entered it (19 solutions). Marked: your R = 1000 gives i = 0.05. Your inputs: PV = 7721.73, R = 1000, n = 10.*
 
 ```python
 actuarial_science_ai999x.solve('act_annuity_yield', PV=7721.73, R=1000.0, n=10)
@@ -703,13 +735,13 @@ $$
 - **Assumes:** one time per amount; $0  \leq  t  \leq  200$; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The data amounts (cash flow amounts (a list)) against times (payment times in years (a list)) as given in the worked example (3 points)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-present-value-cash-flows-xy)
+![The payments 100, 200, 300 at times 1, 2, 3 (years) and, beside each, its present value at i = 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-present-value-cash-flows-xy)
 
-*The data amounts (cash flow amounts (a list)) against times (payment times in years (a list)) as given in the worked example (3 points). Also returned: PV = 535.795, AV_at_last = 620.25. Other inputs: i = 0.05.*
+*The payments 100, 200, 300 at times 1, 2, 3 (years) and, beside each, its present value at i = 0.05 as the model computes it for that payment alone: 95.24, 181.4, 259.2. Returned for all of them: PV = 535.8, AV_at_last = 620.2. Your inputs: amounts = 100, 200, 300, times = 1, 2, 3, i = 0.05.*
 
-![PV (present value at time 0) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-present-value-cash-flows-curve)
+![Present value at time 0 as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-present-value-cash-flows-live-1)
 
-*PV (present value at time 0) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. Other inputs as in the worked example: amounts = [100.0, 200.0, 300.0], times = [1.0, 2.0, 3.0]. 41 points computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, PV = 535.795.*
+*Present value at time 0 as i runs from 0.0125 to 0.0875, every other input as you entered it (41 solutions). Marked: your i = 0.05 gives PV = 535.8. Your inputs: amounts = 100, 200, 300, times = 1, 2, 3, i = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_present_value_cash_flows', amounts=[100.0, 200.0, 300.0], times=[1.0, 2.0, 3.0], i=0.05)
@@ -757,13 +789,13 @@ $$
 - **Assumes:** amounts >= 0 with a positive total; one time per amount; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The data amounts (cash flow amounts (a list, non-negative)) against times (payment times in years (a list)) as given in the worked example (3 points)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-duration-convexity-xy)
+![The payments 5, 5, 105 at times 1, 2, 3 (years) and, beside each, its present value at i = 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-duration-convexity-xy)
 
-*The data amounts (cash flow amounts (a list, non-negative)) against times (payment times in years (a list)) as given in the worked example (3 points). Also returned: PV = 100, macaulay = 2.85941, modified = 2.72325, convexity = 10.2056. Other inputs: i = 0.05.*
+*The payments 5, 5, 105 at times 1, 2, 3 (years) and, beside each, its present value at i = 0.05 as the model computes it for that payment alone: 4.762, 4.535, 90.7. Returned for all of them: PV = 100, macaulay = 2.859, modified = 2.723, convexity = 10.21. Your inputs: amounts = 5, 5, 105, times = 1, 2, 3, i = 0.05.*
 
-![macaulay (Macaulay duration (years)) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-duration-convexity-curve)
+![Macaulay duration as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-duration-convexity-live-1)
 
-*macaulay (Macaulay duration (years)) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. Other inputs as in the worked example: amounts = [5.0, 5.0, 105.0], times = [1.0, 2.0, 3.0]. 41 points computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, macaulay = 2.85941.*
+*Macaulay duration as i runs from 0.0125 to 0.0875, every other input as you entered it (41 solutions). Marked: your i = 0.05 gives macaulay = 2.859. Your inputs: amounts = 5, 5, 105, times = 1, 2, 3, i = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_duration_convexity', amounts=[5.0, 5.0, 105.0], times=[1.0, 2.0, 3.0], i=0.05)
@@ -808,9 +840,17 @@ $$
 - **Assumes:** lx non-increasing; only the last lx may be 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![one-year death probabilities (a list) (qx) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (3 values, first 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-life-table-functions-series)
+![One-year death probabilities (a list), entry 1 as lx[1] runs from 950 to 1500, every other input as you entered it (23 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-life-table-functions-live-1)
 
-*one-year death probabilities (a list) (qx) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (3 values, first 0.05, last 0.113636, largest 0.113636); with dx (deaths between ages x and x+1 (a list)), px (one-year survival probabilities (a list)). Inputs: lx = [1000.0, 950.0, 880.0, 780.0].*
+*One-year death probabilities (a list), entry 1 as lx[1] runs from 950 to 1500, every other input as you entered it (23 solutions). Marked: your lx[1] = 1000 gives qx[1] = 0.05. Your inputs: lx = 1000, 950, 880, 780.*
+
+![Every entry of dx as computed for your inputs (3 entries: 50, 70, 100)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-life-table-functions-live-2)
+
+*Every entry of dx as computed for your inputs (3 entries: 50, 70, 100). Your inputs: lx = 1000, 950, 880, 780.*
+
+![Qx[1], qx[2] and qx[3] as lx[4] runs from 390 to 876, every other input as you entered it (20 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-life-table-functions-live-3)
+
+*Qx[1], qx[2] and qx[3] as lx[4] runs from 390 to 876, every other input as you entered it (20 solutions). Marked: your lx[4] = 780 gives qx[1] = 0.05. Your inputs: lx = 1000, 950, 880, 780.*
 
 ```python
 actuarial_science_ai999x.solve('act_life_table_functions', lx=[1000.0, 950.0, 880.0, 780.0])
@@ -859,9 +899,17 @@ $$
 - **Assumes:** $x_{0}  \leq  x$ and x + t inside the table; $l_x > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The worked example of Probability of surviving t years from a life table as inputs and results: stated lx = [1000](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-survival-probability-io)
+![The question as stated (lx = [1000, 950, 880, 780], x0 = 60, x = 61, t = 2) and what the model returns for it (tpx = 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-survival-probability-io)
 
-*The worked example of Probability of surviving t years from a life table as inputs and results: stated lx = [1000.0, 950.0, 880.0, 780.0], x0 = 60, x = 61, t = 2; returned by actuarial-science-ai999x: tpx = 0.821053, tqx = 0.178947, deaths = 170.*
+*The question as stated (lx = [1000, 950, 880, 780], x0 = 60, x = 61, t = 2) and what the model returns for it (tpx = 0.8211, tqx = 0.1789, deaths = 170). Your inputs: lx = 1000, 950, 880, 780, x0 = 60, x = 61, t = 2.*
+
+![Probability of surviving t years as lx[4] runs from 390 to 870, every other input as you entered it (22 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-survival-probability-live-1)
+
+*Probability of surviving t years as lx[4] runs from 390 to 870, every other input as you entered it (22 solutions). Marked: your lx[4] = 780 gives tpx = 0.8211. Your inputs: lx = 1000, 950, 880, 780, x0 = 60, x = 61, t = 2.*
+
+![Probability of surviving t years as t runs from 0 to 2, every other input as you entered it (3 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-survival-probability-live-2)
+
+*Probability of surviving t years as t runs from 0 to 2, every other input as you entered it (3 solutions). Marked: your t = 2 gives tpx = 0.8211. Your inputs: lx = 1000, 950, 880, 780, x0 = 60, x = 61, t = 2.*
 
 ```python
 actuarial_science_ai999x.solve('act_survival_probability', lx=[1000.0, 950.0, 880.0, 780.0], x0=60, x=61, t=2)
@@ -910,9 +958,9 @@ $$
 - **Assumes:** x + u + t inside the table; $t  \geq  1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The worked example of Deferred death probability u|t q x as inputs and results: stated lx = [1000](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-deferred-death-probability-io)
+![The question as stated (lx = [1000, 950, 880, 780, …], x0 = 60, x = 60, u = 2, t = 2) and what the model returns for it (prob = 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-deferred-death-probability-io)
 
-*The worked example of Deferred death probability u|t q x as inputs and results: stated lx = [1000.0, 950.0, 880.0, 780.0, 650.0], x0 = 60, x = 60, u = 2, t = 2; returned by actuarial-science-ai999x: prob = 0.23, upx = 0.88.*
+*The question as stated (lx = [1000, 950, 880, 780, …], x0 = 60, x = 60, u = 2, t = 2) and what the model returns for it (prob = 0.23, upx = 0.88). Your inputs: lx = 1000, 950, 880, 780, 650, x0 = 60, x = 60, u = 2, t = 2.*
 
 ```python
 actuarial_science_ai999x.solve('act_deferred_death_probability', lx=[1000.0, 950.0, 880.0, 780.0, 650.0], x0=60, x=60, u=2, t=2)
@@ -958,9 +1006,17 @@ $$
 - **Assumes:** the table closes (last lx = 0); x inside the table
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The worked example of Curtate and complete expectation of life as inputs and results: stated lx = [1000](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-life-expectancy-io)
+![The question as stated (lx = [1000, 900, 700, 400, …], x0 = 95, x = 95) and what the model returns for it (e_curtate = 2, e_complete = 2](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-life-expectancy-io)
 
-*The worked example of Curtate and complete expectation of life as inputs and results: stated lx = [1000.0, 900.0, 700.0, 400.0, 0.0], x0 = 95, x = 95; returned by actuarial-science-ai999x: e_curtate = 2, e_complete = 2.5.*
+*The question as stated (lx = [1000, 900, 700, 400, …], x0 = 95, x = 95) and what the model returns for it (e_curtate = 2, e_complete = 2.5). Your inputs: lx = 1000, 900, 700, 400, 0, x0 = 95, x = 95.*
+
+![Curtate expectation of life e_x as x0 runs from 93 to 95, every other input as you entered it (2 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-life-expectancy-live-1)
+
+*Curtate expectation of life e_x as x0 runs from 93 to 95, every other input as you entered it (2 solutions). Marked: your x0 = 95 gives e_curtate = 2. Your inputs: lx = 1000, 900, 700, 400, 0, x0 = 95, x = 95.*
+
+![Curtate expectation of life e_x as x runs from 95 to 97, every other input as you entered it (2 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-life-expectancy-live-2)
+
+*Curtate expectation of life e_x as x runs from 95 to 97, every other input as you entered it (2 solutions). Marked: your x = 95 gives e_curtate = 2. Your inputs: lx = 1000, 900, 700, 400, 0, x0 = 95, x = 95.*
 
 ```python
 actuarial_science_ai999x.solve('act_life_expectancy', lx=[1000.0, 900.0, 700.0, 400.0, 0.0], x0=95, x=95)
@@ -1008,9 +1064,17 @@ $$
 - **Assumes:** x + n inside the table; $n  \geq  1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The worked example of Temporary (n-year) expectation of life as inputs and results: stated lx = [1000](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-temporary-expectation-io)
+![The question as stated (lx = [1000, 900, 700, 400, …], x0 = 95, x = 95, n = 2) and what the model returns for it (e_curtate = 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-temporary-expectation-io)
 
-*The worked example of Temporary (n-year) expectation of life as inputs and results: stated lx = [1000.0, 900.0, 700.0, 400.0, 0.0], x0 = 95, x = 95, n = 2; returned by actuarial-science-ai999x: e_curtate = 1.6, e_complete = 1.75.*
+*The question as stated (lx = [1000, 900, 700, 400, …], x0 = 95, x = 95, n = 2) and what the model returns for it (e_curtate = 1.6, e_complete = 1.75). Your inputs: lx = 1000, 900, 700, 400, 0, x0 = 95, x = 95, n = 2.*
+
+![Curtate n-year temporary expectation e_(x:n) as n runs from 1 to 4, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-temporary-expectation-live-1)
+
+*Curtate n-year temporary expectation e_(x:n) as n runs from 1 to 4, every other input as you entered it (4 solutions). Marked: your n = 2 gives e_curtate = 1.6. Your inputs: lx = 1000, 900, 700, 400, 0, x0 = 95, x = 95, n = 2.*
+
+![Curtate n-year temporary expectation e_(x:n) as lx[1] runs from 920 to 1480, every other input as you entered it (18 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-temporary-expectation-live-2)
+
+*Curtate n-year temporary expectation e_(x:n) as lx[1] runs from 920 to 1480, every other input as you entered it (18 solutions). Marked: your lx[1] = 1000 gives e_curtate = 1.6. Your inputs: lx = 1000, 900, 700, 400, 0, x0 = 95, x = 95, n = 2.*
 
 ```python
 actuarial_science_ai999x.solve('act_temporary_expectation', lx=[1000.0, 900.0, 700.0, 400.0, 0.0], x0=95, x=95, n=2)
@@ -1055,9 +1119,9 @@ $$
 - **Assumes:** $m > 0$; $m < 2$ under UDD
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![q (one-year death probability q_x) against m (central death rate m_x (deaths per person-year)) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-central-death-rate-curve)
+![One-year death probability q_x as m runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-central-death-rate-live-1)
 
-*q (one-year death probability q_x) against m (central death rate m_x (deaths per person-year)) from 0.01 to 0.03. Other inputs as in the worked example: assumption = udd. 31 points computed by actuarial-science-ai999x; marked: the worked example, m = 0.02, q = 0.019802.*
+*One-year death probability q_x as m runs from 0.005 to 0.035, every other input as you entered it (41 solutions). Marked: your m = 0.02 gives q = 0.0198. Your inputs: m = 0.02, assumption = udd.*
 
 ```python
 actuarial_science_ai999x.solve('act_central_death_rate', m=0.02, assumption='udd')
@@ -1104,13 +1168,21 @@ $$
 - **Assumes:** $0 < q < 1$; $0 < s < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![spx (probability of surviving to age x+s) against q (one-year death probability q_x) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-fractional-age-curve)
+![spx (probability of surviving to age x+s) over q from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-fractional-age-field)
 
-*spx (probability of surviving to age x+s) against q (one-year death probability q_x) from 0.02 to 0.98. One curve for each value of s (fraction of the year (0 < s < 1)): 0.5, 0.26, 0.74. Other inputs as in the worked example: assumption = udd. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, q = 0.1, spx = 0.95.*
+*spx (probability of surviving to age x+s) over q from 0.02 to 0.98 and s from 0.02 to 0.98: each of the 221 cells is one run of the model, shaded by its value (light 0.0396 to dark 0.9996); refused combinations are left blank. Marked: these inputs, q = 0.1, s = 0.5, spx = 0.95. Your inputs: q = 0.1, s = 0.5, assumption = udd.*
 
-![spx (probability of surviving to age x+s) over q (one-year death probability q_x) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-fractional-age-field)
+![Probability of surviving to age x+s as q runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-fractional-age-live-1)
 
-*spx (probability of surviving to age x+s) over q (one-year death probability q_x) from 0.02 to 0.98 and s (fraction of the year (0 < s < 1)) from 0.02 to 0.98: each of the 21 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 0.0396 to dark 0.9996); iso-lines at spx = 0.2, 0.4, 0.6, 0.8. Other inputs as in the worked example: assumption = udd. Marked: the worked example, q = 0.1, s = 0.5, spx = 0.95.*
+*Probability of surviving to age x+s as q runs from 0.025 to 0.175, every other input as you entered it (41 solutions). Marked: your q = 0.1 gives spx = 0.95. Your inputs: q = 0.1, s = 0.5, assumption = udd.*
+
+![Probability of surviving to age x+s for every choice of assumption, every other input as you entered it (highlighted: your choice)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-fractional-age-live-2)
+
+*Probability of surviving to age x+s for every choice of assumption, every other input as you entered it (highlighted: your choice). udd: 0.95; constant_force: 0.9487; balducci: 0.9474. Your inputs: q = 0.1, s = 0.5, assumption = udd.*
+
+![Probability of surviving to age x+s as s runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-fractional-age-live-3)
+
+*Probability of surviving to age x+s as s runs from 0.125 to 0.875, every other input as you entered it (29 solutions). Marked: your s = 0.5 gives spx = 0.95. Your inputs: q = 0.1, s = 0.5, assumption = udd.*
 
 ```python
 actuarial_science_ai999x.solve('act_fractional_age', q=0.1, s=0.5, assumption='udd')
@@ -1163,9 +1235,13 @@ $$
 - **Assumes:** the table closes (last lx = 0); x inside the table; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![A_x (whole life insurance M_x/D_x) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-commutation-functions-curve)
+![Whole life insurance M_x/D_x as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-commutation-functions-live-1)
 
-*A_x (whole life insurance M_x/D_x) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. Other inputs as in the worked example: lx = [1000.0, 900.0, 700.0, 400.0, 0.0], x0 = 95, x = 95. 41 points computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, A_x = 0.864876.*
+*Whole life insurance M_x/D_x as i runs from 0.0125 to 0.0875, every other input as you entered it (39 solutions). Marked: your i = 0.05 gives A_x = 0.8649. Your inputs: lx = 1000, 900, 700, 400, 0, x0 = 95, x = 95, i = 0.05.*
+
+![Whole life insurance M_x/D_x as lx[1] runs from 920 to 1480, every other input as you entered it (18 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-commutation-functions-live-2)
+
+*Whole life insurance M_x/D_x as lx[1] runs from 920 to 1480, every other input as you entered it (18 solutions). Marked: your lx[1] = 1000 gives A_x = 0.8649. Your inputs: lx = 1000, 900, 700, 400, 0, x0 = 95, x = 95, i = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_commutation_functions', lx=[1000.0, 900.0, 700.0, 400.0, 0.0], x0=95, x=95, i=0.05)
@@ -1213,9 +1289,9 @@ $$
 - **Assumes:** x + n inside the table; l_(x+n) > 0; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![nEx (pure endowment n_E_x = v^n n_p_x) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pure-endowment-curve)
+![The answer for your inputs: nEx (pure endowment n_E_x = v^n n_p_x) = 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pure-endowment-live-1)
 
-*nEx (pure endowment n_E_x = v^n n_p_x) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of n (years until the payment): 4, 2. Other inputs as in the worked example: lx = [100000.0, 99500.0, 98900.0, 98200.0, 97300.0], x0 = 40, x = 40. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, nEx = 0.80049.*
+*The answer for your inputs: nEx (pure endowment n_E_x = v^n n_p_x) = 0.8005. Your inputs: lx = 100000, 99500, 98900..., x0 = 40, x = 40, n = 4, i = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_pure_endowment', lx=[100000.0, 99500.0, 98900.0, 98200.0, 97300.0], x0=40, x=40, n=4, i=0.05)
@@ -1264,9 +1340,13 @@ $$
 - **Assumes:** $0  \leq  x < \omega$; $0  \leq  t < \omega - x$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![tpx (probability of surviving t years) against omega (limiting age omega (years)) from 50 to 150](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-de-moivre-law-curve)
+![Probability of surviving t years as ω runs from 51](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-de-moivre-law-live-1)
 
-*tpx (probability of surviving t years) against omega (limiting age omega (years)) from 50 to 150. One curve for each value of t (number of years): 10, 5, 20. Other inputs as in the worked example: x = 40.0. 30 points per curve computed by actuarial-science-ai999x; marked: the worked example, omega = 100, tpx = 0.833333.*
+*Probability of surviving t years as ω runs from 51.25 to 175, every other input as you entered it (34 solutions). Marked: your ω = 100 gives tpx = 0.8333. Your inputs: omega = 100, x = 40, t = 10.*
+
+![Probability of surviving t years as x runs from 10 to 70, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-de-moivre-law-live-2)
+
+*Probability of surviving t years as x runs from 10 to 70, every other input as you entered it (29 solutions). Marked: your x = 40 gives tpx = 0.8333. Your inputs: omega = 100, x = 40, t = 10.*
 
 ```python
 actuarial_science_ai999x.solve('act_de_moivre_law', omega=100.0, x=40.0, t=10.0)
@@ -1314,13 +1394,17 @@ $$
 - **Assumes:** $0 < mu < 5$; $t  \geq  0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![tpx (probability of surviving t years) against mu (constant force of mortality per year) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-constant-force-mortality-curve)
+![tpx (probability of surviving t years) over mu from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-constant-force-mortality-field)
 
-*tpx (probability of surviving t years) against mu (constant force of mortality per year) from 0.002 to 0.2 on a logarithmic axis. One curve for each value of t (number of years): 10, 5, 20. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, mu = 0.02, tpx = 0.818731.*
+*tpx (probability of surviving t years) over mu from 0.002 to 0.2 and t from 1 to 100 (logarithmic axes): each of the 221 cells is one run of the model, shaded by its value (light 2.061e-09 to dark 0.998); refused combinations are left blank. Marked: these inputs, mu = 0.02, t = 10, tpx = 0.8187. Your inputs: mu = 0.02, t = 10.*
 
-![tpx (probability of surviving t years) over mu (constant force of mortality per year) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-constant-force-mortality-field)
+![Probability of surviving t years as μ runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-constant-force-mortality-live-1)
 
-*tpx (probability of surviving t years) over mu (constant force of mortality per year) from 0.002 to 0.2 and t (number of years) from 1 to 100 (logarithmic axes): each of the 21 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 2.0612e-09 to dark 0.998002); iso-lines at tpx = 0.2, 0.4, 0.6, 0.8. Marked: the worked example, mu = 0.02, t = 10, tpx = 0.818731.*
+*Probability of surviving t years as μ runs from 0.005 to 0.035, every other input as you entered it (41 solutions). Marked: your μ = 0.02 gives tpx = 0.8187. Your inputs: mu = 0.02, t = 10.*
+
+![Probability of surviving t years as t runs from 2](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-constant-force-mortality-live-2)
+
+*Probability of surviving t years as t runs from 2.5 to 17.5, every other input as you entered it (29 solutions). Marked: your t = 10 gives tpx = 0.8187. Your inputs: mu = 0.02, t = 10.*
 
 ```python
 actuarial_science_ai999x.solve('act_constant_force_mortality', mu=0.02, t=10.0)
@@ -1371,9 +1455,13 @@ $$
 - **Assumes:** $0  \leq  A < 0.1$; $0 < B < 0.1$; $1 < c < 1.5$; $0  \leq  x  \leq  120$; $0  \leq  t  \leq  100$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![tpx (probability of surviving t years) against t (number of years) from 1 to 100 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-makeham-law-curve)
+![Probability of surviving t years as c runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-makeham-law-live-1)
 
-*tpx (probability of surviving t years) against t (number of years) from 1 to 100 on a logarithmic axis. Other inputs as in the worked example: A = 0.00022, B = 2.7e-06, c = 1.124, x = 60.0. 41 points computed by actuarial-science-ai999x; marked: the worked example, t = 10, tpx = 0.942549.*
+*Probability of surviving t years as c runs from 1.012 to 1.495, every other input as you entered it (29 solutions). Marked: your c = 1.124 gives tpx = 0.9425. Your inputs: A = 0.00022, B = 2.7e-06, c = 1.124, x = 60, t = 10.*
+
+![Probability of surviving t years as x runs from 15 to 105, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-makeham-law-live-2)
+
+*Probability of surviving t years as x runs from 15 to 105, every other input as you entered it (29 solutions). Marked: your x = 60 gives tpx = 0.9425. Your inputs: A = 0.00022, B = 2.7e-06, c = 1.124, x = 60, t = 10.*
 
 ```python
 actuarial_science_ai999x.solve('act_makeham_law', A=0.00022, B=2.7e-06, c=1.124, x=60.0, t=10.0)
@@ -1424,9 +1512,13 @@ $$
 - **Assumes:** $0 < B < 0.1$; $1 < c < 1.5$; $0  \leq  x  \leq  120$; $0  \leq  t  \leq  100$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![tpx (probability of surviving t years) against t (number of years) from 1 to 100 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-gompertz-law-curve)
+![Probability of surviving t years as c runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-gompertz-law-live-1)
 
-*tpx (probability of surviving t years) against t (number of years) from 1 to 100 on a logarithmic axis. Other inputs as in the worked example: B = 0.0003, c = 1.07, x = 50.0. 41 points computed by actuarial-science-ai999x; marked: the worked example, t = 10, tpx = 0.88133.*
+*Probability of surviving t years as c runs from 1.006 to 1.472, every other input as you entered it (35 solutions). Marked: your c = 1.07 gives tpx = 0.8813. Your inputs: B = 0.0003, c = 1.07, x = 50, t = 10.*
+
+![Probability of surviving t years as x runs from 12](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-gompertz-law-live-2)
+
+*Probability of surviving t years as x runs from 12.5 to 87.5, every other input as you entered it (25 solutions). Marked: your x = 50 gives tpx = 0.8813. Your inputs: B = 0.0003, c = 1.07, x = 50, t = 10.*
 
 ```python
 actuarial_science_ai999x.solve('act_gompertz_law', B=0.0003, c=1.07, x=50.0, t=10.0)
@@ -1474,9 +1566,13 @@ $$
 - **Assumes:** the table closes (last q = 1); $0 < i < 1$; $S > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![A (A_x per unit sum insured) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-whole-life-insurance-curve)
+![Actuarial present value S A_x as S runs from 250 to 1750, every other input as you entered it (39 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-whole-life-insurance-live-1)
 
-*A (A_x per unit sum insured) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], S = 1000.0. 41 points computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, A = 0.865658.*
+*Actuarial present value S A_x as S runs from 250 to 1750, every other input as you entered it (39 solutions). Marked: your S = 1000 gives EPV = 865.7. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000.*
+
+![A_x per unit sum insured as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-whole-life-insurance-live-2)
+
+*A_x per unit sum insured as i runs from 0.0125 to 0.0875, every other input as you entered it (29 solutions). Marked: your i = 0.05 gives A = 0.8657. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_whole_life_insurance', q=[0.1, 0.2, 0.5, 1.0], i=0.05, S=1000.0)
@@ -1527,9 +1623,13 @@ $$
 - **Assumes:** at least n death probabilities; $0 < i < 1$; $S > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![A1 (term insurance A^1_(x:n) per unit) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-term-insurance-curve)
+![A1 as n runs from 1 to 4, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-term-insurance-live-1)
 
-*A1 (term insurance A^1_(x:n) per unit) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of n (term in years): 2, 3, 4. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], S = 1000.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, A1 = 0.258503.*
+*A1 as n runs from 1 to 4, every other input as you entered it (4 solutions). Marked: your n = 2 gives A1 = 0.2585. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 2, S = 1000.*
+
+![EPV as S runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-term-insurance-live-2)
+
+*EPV as S runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your S = 1000 gives EPV = 258.5. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 2, S = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_term_insurance', q=[0.1, 0.2, 0.5, 1.0], i=0.05, n=2, S=1000.0)
@@ -1581,9 +1681,13 @@ $$
 - **Assumes:** at least n death probabilities; $0 < i < 1$; $S > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![A (endowment insurance A_(x:n) per unit) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-endowment-insurance-curve)
+![Endowment insurance A_(x:n) per unit as n runs from 1 to 4, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-endowment-insurance-live-1)
 
-*A (endowment insurance A_(x:n) per unit) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of n (term in years): 2, 3, 4. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], S = 1000.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, A = 0.911565.*
+*Endowment insurance A_(x:n) per unit as n runs from 1 to 4, every other input as you entered it (4 solutions). Marked: your n = 2 gives A = 0.9116. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 2, S = 1000.*
+
+![Standard deviation of the present value as S runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-endowment-insurance-live-2)
+
+*Standard deviation of the present value as S runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your S = 1000 gives sd = 13.61. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 2, S = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_endowment_insurance', q=[0.1, 0.2, 0.5, 1.0], i=0.05, n=2, S=1000.0)
@@ -1631,9 +1735,13 @@ $$
 - **Assumes:** the table closes; u < length of the table; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![uA (deferred insurance u|A_x per unit) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-deferred-insurance-curve)
+![EPV as S runs from 250 to 1750, every other input as you entered it (39 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-deferred-insurance-live-1)
 
-*uA (deferred insurance u|A_x per unit) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of u (deferment in years): 1, 2, 3. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], S = 1000.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, uA = 0.77042.*
+*EPV as S runs from 250 to 1750, every other input as you entered it (39 solutions). Marked: your S = 1000 gives EPV = 770.4. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, u = 1, S = 1000.*
+
+![UA as u runs from 0 to 3, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-deferred-insurance-live-2)
+
+*UA as u runs from 0 to 3, every other input as you entered it (4 solutions). Marked: your u = 1 gives uA = 0.7704. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, u = 1, S = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_deferred_insurance', q=[0.1, 0.2, 0.5, 1.0], i=0.05, u=1, S=1000.0)
@@ -1681,9 +1789,13 @@ $$
 - **Assumes:** the table closes; $0 < i < 1$; $P > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![a_due (whole life annuity-due ä_x) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-whole-life-annuity-curve)
+![Standard deviation of the annuity-due](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-whole-life-annuity-live-1)
 
-*a_due (whole life annuity-due ä_x) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], P = 1000.0. 41 points computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, a_due = 2.82119.*
+*Standard deviation of the annuity-due... as P runs from 250 to 1750, every other input as you entered it (39 solutions). Marked: your P = 1000 gives sd = 872.4. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, P = 1000.*
+
+![Whole life annuity-due ä_x as q[3] runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-whole-life-annuity-live-2)
+
+*Whole life annuity-due ä_x as q[3] runs from 0.125 to 0.875, every other input as you entered it (29 solutions). Marked: your q[3] = 0.5 gives a_due = 2.821. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, P = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_whole_life_annuity', q=[0.1, 0.2, 0.5, 1.0], i=0.05, P=1000.0)
@@ -1731,9 +1843,13 @@ $$
 - **Assumes:** at least n death probabilities; $0 < i < 1$; $P > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![a_due (temporary annuity-due ä_(x:n)) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-temporary-annuity-curve)
+![Actuarial present value P ä_(x:n) as P runs from 250 to 1750, every other input as you entered it (39 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-temporary-annuity-live-1)
 
-*a_due (temporary annuity-due ä_(x:n)) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of n (number of years): 3, 4. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], P = 1000.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, a_due = 2.5102.*
+*Actuarial present value P ä_(x:n) as P runs from 250 to 1750, every other input as you entered it (39 solutions). Marked: your P = 1000 gives EPV = 2510. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 3, P = 1000.*
+
+![Temporary annuity-due ä_(x:n) as n runs from 1 to 4, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-temporary-annuity-live-2)
+
+*Temporary annuity-due ä_(x:n) as n runs from 1 to 4, every other input as you entered it (4 solutions). Marked: your n = 3 gives a_due = 2.51. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 3, P = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_temporary_annuity', q=[0.1, 0.2, 0.5, 1.0], i=0.05, n=3, P=1000.0)
@@ -1780,9 +1896,13 @@ $$
 - **Assumes:** the table closes; u < length of the table; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ua_due (deferred annuity-due u|ä_x) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-deferred-annuity-curve)
+![Ua due as u runs from 0 to 3, every other input as you entered it (4 solutions)](https://huggingface.co/AI999X/actuarial-science-ai999x/resolve/main/figures/act-deferred-annuity-live-1.svg)
 
-*ua_due (deferred annuity-due u|ä_x) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of u (deferment in years): 2, 3. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], P = 1000.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, ua_due = 0.964043.*
+*Ua due as u runs from 0 to 3, every other input as you entered it (4 solutions). Marked: your u = 2 gives ua_due = 0.964. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, u = 2, P = 1000.*
+
+![EPV as P runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-deferred-annuity-live-2)
+
+*EPV as P runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your P = 1000 gives EPV = 964. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, u = 2, P = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_deferred_annuity', q=[0.1, 0.2, 0.5, 1.0], i=0.05, u=2, P=1000.0)
@@ -1828,9 +1948,13 @@ $$
 - **Assumes:** the table closes; $0 < i < 1$; uniform distribution of deaths within each year
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![A_bar (insurance payable at the moment of death Ā_x) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-continuous-insurance-udd-curve)
+![Insurance payable at the moment of death Ā_x as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-continuous-insurance-udd-live-1)
 
-*A_bar (insurance payable at the moment of death Ā_x) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0]. 41 points computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, A_bar = 0.887123.*
+*Insurance payable at the moment of death Ā_x as i runs from 0.0125 to 0.0875, every other input as you entered it (41 solutions). Marked: your i = 0.05 gives A_bar = 0.8871. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05.*
+
+![Insurance payable at the moment of death Ā_x as q[3] runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-continuous-insurance-udd-live-2)
+
+*Insurance payable at the moment of death Ā_x as q[3] runs from 0.125 to 0.875, every other input as you entered it (29 solutions). Marked: your q[3] = 0.5 gives A_bar = 0.8871. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_continuous_insurance_udd', q=[0.1, 0.2, 0.5, 1.0], i=0.05)
@@ -1878,13 +2002,17 @@ $$
 - **Assumes:** the table closes; $0 < i < 1$; $1  \leq  m  \leq  365$; UDD within each year
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![a_m (m-thly annuity-due ä^(m)_x (total 1 a year)) against m (payments per year (12 = monthly)) from 1 to 24](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mthly-annuity-udd-curve)
+![a_m (m-thly annuity-due ä^(m)_x (total 1 a year)) over i from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mthly-annuity-udd-field)
 
-*a_m (m-thly annuity-due ä^(m)_x (total 1 a year)) against m (payments per year (12 = monthly)) from 1 to 24. One curve for each value of i (annual effective interest rate (5% or 0.05)): 0.05, 0.025, 0.1. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0]. 24 points per curve computed by actuarial-science-ai999x; marked: the worked example, m = 12, a_m = 2.35523.*
+*a_m (m-thly annuity-due ä^(m)_x (total 1 a year)) over i from 0.005 to 0.5 and m from 1 to 23 (logarithmic horizontal axis): each of the 221 cells is one run of the model, shaded by its value (light 1.501 to dark 2.963); refused combinations are left blank. Marked: these inputs, i = 0.05, m = 12, a_m = 2.355. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, m = 12.*
 
-![a_m (m-thly annuity-due ä^(m)_x (total 1 a year)) over i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mthly-annuity-udd-field)
+![A m as m runs from 1 to 32, every other input as you entered it (32 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mthly-annuity-udd-live-1)
 
-*a_m (m-thly annuity-due ä^(m)_x (total 1 a year)) over i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 and m (payments per year (12 = monthly)) from 1 to 24 (logarithmic horizontal axis): each of the 21 × 12 cells is one run of actuarial-science-ai999x, shaded by its value (light 1.50048 to dark 2.96303); iso-lines at a_m = 1.75, 2, 2.25, 2.5, 2.75. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0]. Marked: the worked example, i = 0.05, m = 12, a_m = 2.35523.*
+*A m as m runs from 1 to 32, every other input as you entered it (32 solutions). Marked: your m = 12 gives a_m = 2.355. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, m = 12.*
+
+![A m as q[3] runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mthly-annuity-udd-live-2)
+
+*A m as q[3] runs from 0.125 to 0.875, every other input as you entered it (29 solutions). Marked: your q[3] = 0.5 gives a_m = 2.355. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, m = 12.*
 
 ```python
 actuarial_science_ai999x.solve('act_mthly_annuity_udd', q=[0.1, 0.2, 0.5, 1.0], i=0.05, m=12)
@@ -1931,9 +2059,13 @@ $$
 - **Assumes:** ä_x >= 1; $1  \leq  m  \leq  365$; $0 < i < 1$; $0  \leq  mu < 5$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![a_m3 (three-term Woolhouse approximation) against m (payments per year (12 = monthly)) from 1 to 24](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-woolhouse-approximation-curve)
+![Three-term Woolhouse approximation as a_due runs from 3](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-woolhouse-approximation-live-1)
 
-*a_m3 (three-term Woolhouse approximation) against m (payments per year (12 = monthly)) from 1 to 24. One curve for each value of a_due (annual whole life annuity-due ä_x): 14.8166, 7.4083, 29.6332. Other inputs as in the worked example: i = 0.05, mu = 0.00473. 24 points per curve computed by actuarial-science-ai999x; marked: the worked example, m = 12, a_m3 = 14.3538.*
+*Three-term Woolhouse approximation as a_due runs from 3.704 to 25.93, every other input as you entered it (41 solutions). Marked: your a_due = 14.82 gives a_m3 = 14.35. Your inputs: a_due = 14.8166, m = 12, i = 0.05, mu = 0.00473.*
+
+![Three-term Woolhouse approximation as m runs from 1 to 31, every other input as you entered it (17 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-woolhouse-approximation-live-2)
+
+*Three-term Woolhouse approximation as m runs from 1 to 31, every other input as you entered it (17 solutions). Marked: your m = 12 gives a_m3 = 14.35. Your inputs: a_due = 14.8166, m = 12, i = 0.05, mu = 0.00473.*
 
 ```python
 actuarial_science_ai999x.solve('act_woolhouse_approximation', a_due=14.8166, m=12, i=0.05, mu=0.00473)
@@ -1980,13 +2112,17 @@ $$
 - **Assumes:** the table closes; $0 < i < 1$; $S > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![P (annual net premium S A_x / ä_x) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-whole-life-curve)
+![P (annual net premium S A_x / ä_x) over S from 500 to 1500 and i from 0](https://huggingface.co/AI999X/actuarial-science-ai999x/resolve/main/figures/act-net-premium-whole-life-field.svg)
 
-*P (annual net premium S A_x / ä_x) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of S (sum insured): 1000, 500, 2000. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0]. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, P = 306.842.*
+*P (annual net premium S A_x / ä_x) over S from 500 to 1500 and i from 0.005 to 0.5 (logarithmic vertical axis): each of the 221 cells is one run of the model, shaded by its value (light 80.04 to dark 498.8); refused combinations are left blank. Marked: these inputs, S = 1000, i = 0.05, P = 306.8. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000.*
 
-![P (annual net premium S A_x / ä_x) over S (sum insured) from 500 to 1500 and i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-whole-life-field)
+![P as S runs from 250 to 1750, every other input as you entered it (39 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-whole-life-live-1)
 
-*P (annual net premium S A_x / ä_x) over S (sum insured) from 500 to 1500 and i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 (logarithmic vertical axis): each of the 21 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 80.0439 to dark 498.776); iso-lines at P = 100, 200, 300, 400. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0]. Marked: the worked example, S = 1000, i = 0.05, P = 306.842.*
+*P as S runs from 250 to 1750, every other input as you entered it (39 solutions). Marked: your S = 1000 gives P = 306.8. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000.*
+
+![P as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-whole-life-live-2)
+
+*P as i runs from 0.0125 to 0.0875, every other input as you entered it (29 solutions). Marked: your i = 0.05 gives P = 306.8. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_net_premium_whole_life', q=[0.1, 0.2, 0.5, 1.0], i=0.05, S=1000.0)
@@ -2034,9 +2170,13 @@ $$
 - **Assumes:** at least n death probabilities; $0 < i < 1$; $S > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![P (annual net premium S A^1_(x:n) / ä_(x:n)) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-term-curve)
+![P as n runs from 1 to 4, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-term-live-1)
 
-*P (annual net premium S A^1_(x:n) / ä_(x:n)) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of S (sum insured): 1000, 500, 2000. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], n = 3. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, P = 226.868.*
+*P as n runs from 1 to 4, every other input as you entered it (4 solutions). Marked: your n = 3 gives P = 226.9. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 3, S = 1000.*
+
+![P as S runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-term-live-2)
+
+*P as S runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your S = 1000 gives P = 226.9. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 3, S = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_net_premium_term', q=[0.1, 0.2, 0.5, 1.0], i=0.05, n=3, S=1000.0)
@@ -2084,9 +2224,13 @@ $$
 - **Assumes:** at least n death probabilities; $0 < i < 1$; $S > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![P (annual net premium S A_(x:n) / ä_(x:n)) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-endowment-curve)
+![P as S runs from 250 to 1750, every other input as you entered it (35 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-endowment-live-1)
 
-*P (annual net premium S A_(x:n) / ä_(x:n)) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of S (sum insured): 1000, 500, 2000. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], n = 3. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, P = 350.755.*
+*P as S runs from 250 to 1750, every other input as you entered it (35 solutions). Marked: your S = 1000 gives P = 350.8. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 3, S = 1000.*
+
+![P as n runs from 1 to 4, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-endowment-live-2)
+
+*P as n runs from 1 to 4, every other input as you entered it (4 solutions). Marked: your n = 3 gives P = 350.8. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 3, S = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_net_premium_endowment', q=[0.1, 0.2, 0.5, 1.0], i=0.05, n=3, S=1000.0)
@@ -2134,9 +2278,13 @@ $$
 - **Assumes:** the table closes; 1 <= h <= length of the table; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![P (annual net premium S A_x / ä_(x:h)) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-limited-pay-curve)
+![P as h runs from 1 to 4, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-limited-pay-live-1)
 
-*P (annual net premium S A_x / ä_(x:h)) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of S (sum insured): 1000, 500, 2000. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], h = 2. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, P = 466.123.*
+*P as h runs from 1 to 4, every other input as you entered it (4 solutions). Marked: your h = 2 gives P = 466.1. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, h = 2, S = 1000.*
+
+![P as S runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-net-premium-limited-pay-live-2)
+
+*P as S runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your S = 1000 gives P = 466.1. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, h = 2, S = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_net_premium_limited_pay', q=[0.1, 0.2, 0.5, 1.0], i=0.05, h=2, S=1000.0)
@@ -2187,9 +2335,13 @@ $$
 - **Assumes:** the table closes; $0 < i < 1$; $0  \leq  e_{0}$, $r < 1$; c, $E  \geq  0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![G (annual gross premium) against r (renewal expense as a fraction of each later gross premium (e](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-gross-premium-curve)
+![Annual gross premium as S runs from 250 to 1750, every other input as you entered it (37 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-gross-premium-live-1)
 
-*G (annual gross premium) against r (renewal expense as a fraction of each later gross premium (e.g. 5%)) from 0.02 to 0.98. One curve for each value of S (sum insured): 1000, 500, 2000. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], i = 0.05, e0 = 0.4, c = 10.0, E = 20.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, r = 0.05, G = 391.044.*
+*Annual gross premium as S runs from 250 to 1750, every other input as you entered it (37 solutions). Marked: your S = 1000 gives G = 391. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000, e0 = 0.4, r = 0.05, c = 10, E = 20.*
+
+![Annual gross premium as e0 runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-gross-premium-live-2)
+
+*Annual gross premium as e0 runs from 0.1 to 0.7, every other input as you entered it (29 solutions). Marked: your e0 = 0.4 gives G = 391. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000, e0 = 0.4, r = 0.05, c = 10, E = 20.*
 
 ```python
 actuarial_science_ai999x.solve('act_gross_premium', q=[0.1, 0.2, 0.5, 1.0], i=0.05, S=1000.0, e0=0.4, r=0.05, c=10.0, E=20.0)
@@ -2238,9 +2390,13 @@ $$
 - **Assumes:** the table closes; $0 < i < 1$; S, $P > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![sd (standard deviation (S + P/d) sqrt(2A_x - A_x^2)) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-loss-at-issue-curve)
+![Standard deviation as P runs from 112](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-loss-at-issue-live-1)
 
-*sd (standard deviation (S + P/d) sqrt(2A_x - A_x^2)) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of P (annual premium): 450, 225, 900. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], S = 1000.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, sd = 434.101.*
+*Standard deviation as P runs from 112.5 to 787.5, every other input as you entered it (39 solutions). Marked: your P = 450 gives sd = 434.1. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000, P = 450.*
+
+![Standard deviation as S runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-loss-at-issue-live-2)
+
+*Standard deviation as S runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your S = 1000 gives sd = 434.1. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000, P = 450.*
 
 ```python
 actuarial_science_ai999x.solve('act_loss_at_issue', q=[0.1, 0.2, 0.5, 1.0], i=0.05, S=1000.0, P=450.0)
@@ -2289,9 +2445,13 @@ $$
 - **Assumes:** the table closes; 0 <= t < length of the table; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![V (net premium reserve tV) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reserve-whole-life-curve)
+![Net premium reserve tV as t runs from 0 to 3, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reserve-whole-life-live-1)
 
-*V (net premium reserve tV) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of S (sum insured): 1000, 500, 2000. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], t = 1. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, V = 246.871.*
+*Net premium reserve tV as t runs from 0 to 3, every other input as you entered it (4 solutions). Marked: your t = 1 gives V = 246.9. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000, t = 1.*
+
+![Net premium reserve tV as S runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reserve-whole-life-live-2)
+
+*Net premium reserve tV as S runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your S = 1000 gives V = 246.9. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000, t = 1.*
 
 ```python
 actuarial_science_ai999x.solve('act_reserve_whole_life', q=[0.1, 0.2, 0.5, 1.0], i=0.05, S=1000.0, t=1)
@@ -2339,9 +2499,13 @@ $$
 - **Assumes:** at least n death probabilities; $0  \leq  t  \leq  n$; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![V (net premium reserve tV) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reserve-endowment-curve)
+![Net premium reserve tV as t runs from 0 to 3, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reserve-endowment-live-1)
 
-*V (net premium reserve tV) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of S (sum insured): 1000, 500, 2000. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], n = 3, t = 1. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, V = 298.103.*
+*Net premium reserve tV as t runs from 0 to 3, every other input as you entered it (4 solutions). Marked: your t = 1 gives V = 298.1. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 3, S = 1000, t = 1.*
+
+![Net premium reserve tV as S runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reserve-endowment-live-2)
+
+*Net premium reserve tV as S runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your S = 1000 gives V = 298.1. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, n = 3, S = 1000, t = 1.*
 
 ```python
 actuarial_science_ai999x.solve('act_reserve_endowment', q=[0.1, 0.2, 0.5, 1.0], i=0.05, n=3, S=1000.0, t=1)
@@ -2389,9 +2553,13 @@ $$
 - **Assumes:** at least n death probabilities; $0  \leq  t  \leq  n$; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![V (net premium reserve tV) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reserve-term-curve)
+![Net premium reserve tV as n runs from 2 to 4, every other input as you entered it (3 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reserve-term-live-1)
 
-*V (net premium reserve tV) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of S (sum insured): 1000, 500, 2000. Other inputs as in the worked example: q = [0.01, 0.02, 0.04, 0.08], n = 4, t = 2. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, V = 43.2104.*
+*Net premium reserve tV as n runs from 2 to 4, every other input as you entered it (3 solutions). Marked: your n = 4 gives V = 43.21. Your inputs: q = 0.01, 0.02, 0.04, 0.08, i = 0.05, n = 4, S = 1000, t = 2.*
+
+![Net premium reserve tV as t runs from 0 to 4, every other input as you entered it (5 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reserve-term-live-2)
+
+*Net premium reserve tV as t runs from 0 to 4, every other input as you entered it (5 solutions). Marked: your t = 2 gives V = 43.21. Your inputs: q = 0.01, 0.02, 0.04, 0.08, i = 0.05, n = 4, S = 1000, t = 2.*
 
 ```python
 actuarial_science_ai999x.solve('act_reserve_term', q=[0.01, 0.02, 0.04, 0.08], i=0.05, n=4, S=1000.0, t=2)
@@ -2439,9 +2607,13 @@ $$
 - **Assumes:** at least t death probabilities; $t_p_x > 0$; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![V (retrospective reserve tV) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-retrospective-reserve-curve)
+![Retrospective reserve tV as P runs from 112](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-retrospective-reserve-live-1)
 
-*V (retrospective reserve tV) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. One curve for each value of P (annual premium): 450, 225, 900. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], S = 1000.0, t = 2. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, V = 883.854.*
+*Retrospective reserve tV as P runs from 112.5 to 787.5, every other input as you entered it (33 solutions). Marked: your P = 450 gives V = 883.9. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000, P = 450, t = 2.*
+
+![Retrospective reserve tV as t runs from 1 to 3, every other input as you entered it (3 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-retrospective-reserve-live-2)
+
+*Retrospective reserve tV as t runs from 1 to 3, every other input as you entered it (3 solutions). Marked: your t = 2 gives V = 883.9. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000, P = 450, t = 2.*
 
 ```python
 actuarial_science_ai999x.solve('act_retrospective_reserve', q=[0.1, 0.2, 0.5, 1.0], i=0.05, S=1000.0, P=450.0, t=2)
@@ -2490,9 +2662,13 @@ $$
 - **Assumes:** $0  \leq  q < 1$; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![V_next (policy value at the end of the year (t+1)V) against q (death probability for the year q_(x+t)) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-policy-value-recursion-curve)
+![Policy value at the end of the year (t+1)V as V runs from 25 to 175, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-policy-value-recursion-live-1)
 
-*V_next (policy value at the end of the year (t+1)V) against q (death probability for the year q_(x+t)) from 0.02 to 0.98. Other inputs as in the worked example: V = 100.0, P = 50.0, e = 5.0, i = 0.05, S = 1000.0, E = 0.0. 41 points computed by actuarial-science-ai999x; marked: the worked example, q = 0.01, V_next = 143.687.*
+*Policy value at the end of the year (t+1)V as V runs from 25 to 175, every other input as you entered it (41 solutions). Marked: your V = 100 gives V_next = 143.7. Your inputs: V = 100, P = 50, e = 5, i = 0.05, q = 0.01, S = 1000, E = 0.*
+
+![Policy value at the end of the year (t+1)V as P runs from 12](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-policy-value-recursion-live-2)
+
+*Policy value at the end of the year (t+1)V as P runs from 12.5 to 87.5, every other input as you entered it (29 solutions). Marked: your P = 50 gives V_next = 143.7. Your inputs: V = 100, P = 50, e = 5, i = 0.05, q = 0.01, S = 1000, E = 0.*
 
 ```python
 actuarial_science_ai999x.solve('act_policy_value_recursion', V=100.0, P=50.0, e=5.0, i=0.05, q=0.01, S=1000.0, E=0.0)
@@ -2543,9 +2719,13 @@ $$
 - **Assumes:** the table closes; 0 <= t < length of the table; $0  \leq  e_{0}$, $r < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![V (gross premium reserve tV) against r (renewal expense as a fraction of each later gross premium) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-gross-premium-reserve-curve)
+![Gross premium reserve tV as t runs from 0 to 3, every other input as you entered it (4 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-gross-premium-reserve-live-1)
 
-*V (gross premium reserve tV) against r (renewal expense as a fraction of each later gross premium) from 0.02 to 0.98. One curve for each value of S (sum insured): 1000, 500, 2000. Other inputs as in the worked example: q = [0.1, 0.2, 0.5, 1.0], i = 0.05, e0 = 0.4, c = 10.0, E = 20.0, t = 1. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, r = 0.05, V = 148.731.*
+*Gross premium reserve tV as t runs from 0 to 3, every other input as you entered it (4 solutions). Marked: your t = 1 gives V = 148.7. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000, e0 = 0.4, r = 0.05, c = 10, E = 20, t = 1.*
+
+![Gross premium reserve tV as S runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-gross-premium-reserve-live-2)
+
+*Gross premium reserve tV as S runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your S = 1000 gives V = 148.7. Your inputs: q = 0.1, 0.2, 0.5, 1, i = 0.05, S = 1000, e0 = 0.4, r = 0.05, c = 10, E = 20, t = 1.*
 
 ```python
 actuarial_science_ai999x.solve('act_gross_premium_reserve', q=[0.1, 0.2, 0.5, 1.0], i=0.05, S=1000.0, e0=0.4, r=0.05, c=10.0, E=20.0, t=1)
@@ -2595,9 +2775,13 @@ $$
 - **Assumes:** $0 < mu$, $\delta < 1$; $0 < n  \leq  100$; $0  \leq  t  \leq  n$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![V (reserve at time t) against n (term in years) from 10 to 30](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-thiele-endowment-curve)
+![Reserve at time t as n runs from 10](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-thiele-endowment-live-1)
 
-*V (reserve at time t) against n (term in years) from 10 to 30. One curve for each value of S (sum insured): 1000, 500, 2000. Other inputs as in the worked example: mu = 0.02, delta = 0.05, t = 10.0. 31 points per curve computed by actuarial-science-ai999x; marked: the worked example, n = 20, V = 331.812.*
+*Reserve at time t as n runs from 10.25 to 35, every other input as you entered it (34 solutions). Marked: your n = 20 gives V = 331.8. Your inputs: mu = 0.02, delta = 0.05, n = 20, S = 1000, t = 10.*
+
+![Reserve at time t as t runs from 2](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-thiele-endowment-live-2)
+
+*Reserve at time t as t runs from 2.5 to 17.5, every other input as you entered it (29 solutions). Marked: your t = 10 gives V = 331.8. Your inputs: mu = 0.02, delta = 0.05, n = 20, S = 1000, t = 10.*
 
 ```python
 actuarial_science_ai999x.solve('act_thiele_endowment', mu=0.02, delta=0.05, n=20.0, S=1000.0, t=10.0)
@@ -2649,9 +2833,13 @@ $$
 - **Assumes:** Makeham parameters $0  \leq  A < 0.1$, $0 < B < 0.1$, $1 < c < 1.5$; $0  \leq  x  \leq  120$; $0  \leq  t  \leq  100$; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![V (reserve at time t) against t (time since issue in years) from 1 to 100 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-makeham-continuous-whole-life-curve)
+![Reserve at time t as c runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-makeham-continuous-whole-life-live-1)
 
-*V (reserve at time t) against t (time since issue in years) from 1 to 100 on a logarithmic axis. One curve for each value of S (sum insured): 100000, 50000, 200000. Other inputs as in the worked example: A = 0.00022, B = 2.7e-06, c = 1.124, x = 50.0, i = 0.05. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, t = 10, V = 12836.5.*
+*Reserve at time t as c runs from 1.018 to 1.483, every other input as you entered it (35 solutions). Marked: your c = 1.124 gives V = 1.284e+04. Your inputs: A = 0.00022, B = 2.7e-06, c = 1.124, x = 50, i = 0.05, S = 100000, t = 10.*
+
+![Reserve at time t as x runs from 12](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-makeham-continuous-whole-life-live-2)
+
+*Reserve at time t as x runs from 12.5 to 87.5, every other input as you entered it (23 solutions). Marked: your x = 50 gives V = 1.284e+04. Your inputs: A = 0.00022, B = 2.7e-06, c = 1.124, x = 50, i = 0.05, S = 100000, t = 10.*
 
 ```python
 actuarial_science_ai999x.solve('act_makeham_continuous_whole_life', A=0.00022, B=2.7e-06, c=1.124, x=50.0, i=0.05, S=100000.0, t=10.0)
@@ -2699,9 +2887,13 @@ $$
 - **Assumes:** both tables close; independent lives; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![a_joint (joint life annuity-due ä_xy) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-joint-life-last-survivor-curve)
+![Joint life annuity-due ä_xy as i runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-joint-life-last-survivor-live-1)
 
-*a_joint (joint life annuity-due ä_xy) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. Other inputs as in the worked example: qx = [0.1, 0.2, 0.5, 1.0], qy = [0.05, 0.1, 0.3, 0.6, 1.0]. 41 points computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, a_joint = 2.55878.*
+*Joint life annuity-due ä_xy as i runs from 0.0125 to 0.0875, every other input as you entered it (37 solutions). Marked: your i = 0.05 gives a_joint = 2.559. Your inputs: qx = 0.1, 0.2, 0.5, 1, qy = 0.05, 0.1, 0.3, 0.6, 1, i = 0.05.*
+
+![Last survivor annuity-due as qy[4] runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-joint-life-last-survivor-live-2)
+
+*Last survivor annuity-due as qy[4] runs from 0.15 to 0.9857, every other input as you entered it (27 solutions). Marked: your qy[4] = 0.6 gives a_last = 3.657. Your inputs: qx = 0.1, 0.2, 0.5, 1, qy = 0.05, 0.1, 0.3, 0.6, 1, i = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_joint_life_last_survivor', qx=[0.1, 0.2, 0.5, 1.0], qy=[0.05, 0.1, 0.3, 0.6, 1.0], i=0.05)
@@ -2748,9 +2940,13 @@ $$
 - **Assumes:** both tables close; independent lives; $0 < i < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![a_rev (reversionary annuity a_(x|y) per unit) against i (annual effective interest rate (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reversionary-annuity-curve)
+![EPV as P runs from 250 to 1750, every other input as you entered it (37 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reversionary-annuity-live-1)
 
-*a_rev (reversionary annuity a_(x|y) per unit) against i (annual effective interest rate (5% or 0.05)) from 0.005 to 0.5 on a logarithmic axis. Other inputs as in the worked example: qx = [0.1, 0.2, 0.5, 1.0], qy = [0.05, 0.1, 0.3, 0.6, 1.0], P = 1000.0. 41 points computed by actuarial-science-ai999x; marked: the worked example, i = 0.05, a_rev = 0.835458.*
+*EPV as P runs from 250 to 1750, every other input as you entered it (37 solutions). Marked: your P = 1000 gives EPV = 835.5. Your inputs: qx = 0.1, 0.2, 0.5, 1, qy = 0.05, 0.1, 0.3, 0.6, 1, i = 0.05, P = 1000.*
+
+![A rev as qy[4] runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-reversionary-annuity-live-2)
+
+*A rev as qy[4] runs from 0.15 to 0.9857, every other input as you entered it (27 solutions). Marked: your qy[4] = 0.6 gives a_rev = 0.8355. Your inputs: qx = 0.1, 0.2, 0.5, 1, qy = 0.05, 0.1, 0.3, 0.6, 1, i = 0.05, P = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_reversionary_annuity', qx=[0.1, 0.2, 0.5, 1.0], qy=[0.05, 0.1, 0.3, 0.6, 1.0], i=0.05, P=1000.0)
@@ -2796,13 +2992,17 @@ $$
 - **Assumes:** q1, $q_{2} > 0$; $q_{1} + q_{2} < 1$; UDD in the multiple decrement table
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![q1_single (associated single decrement probability q'(1)) against q1 (probability of leaving by decrement 1 within the year q(1)), with q2 = 0](https://huggingface.co/AI999X/actuarial-science-ai999x/resolve/main/figures/act-multiple-decrement-to-single-q1-single-vs-q1.svg)
+![q1_single (associated single decrement probability q'(1)) against q1 from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-multiple-decrement-to-single-q1-single-vs-q1)
 
-*q1_single (associated single decrement probability q'(1)) against q1 (probability of leaving by decrement 1 within the year q(1)), with q2 = 0.2. 31 points computed by actuarial-science-ai999x; marked: q1 = 0.1, q1_single = 0.112096.*
+*q1_single (associated single decrement probability q'(1)) against q1 from 0.05 to 0.15, with q2 = 0.2: 31 points, each computed by the model. Marked: q1 = 0.1, q1_single = 0.1121. Your inputs: q1 = 0.1, q2 = 0.2.*
 
-![q1_single (associated single decrement probability q'(1)) against q2 (probability of leaving by decrement 2 within the year q(2)) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-multiple-decrement-to-single-curve)
+![Associated single decrement probability q'(1) as q1 runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-multiple-decrement-to-single-live-1)
 
-*q1_single (associated single decrement probability q'(1)) against q2 (probability of leaving by decrement 2 within the year q(2)) from 0.02 to 0.98. One curve for each value of q1 (probability of leaving by decrement 1 within the year q(1)): 0.1, 0.26, 0.74. 37 points per curve computed by actuarial-science-ai999x; marked: the worked example, q2 = 0.2, q1_single = 0.112096.*
+*Associated single decrement probability q'(1) as q1 runs from 0.025 to 0.175, every other input as you entered it (41 solutions). Marked: your q1 = 0.1 gives q1_single = 0.1121. Your inputs: q1 = 0.1, q2 = 0.2.*
+
+![Associated single decrement probability q'(1) as q2 runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-multiple-decrement-to-single-live-2)
+
+*Associated single decrement probability q'(1) as q2 runs from 0.05 to 0.35, every other input as you entered it (29 solutions). Marked: your q2 = 0.2 gives q1_single = 0.1121. Your inputs: q1 = 0.1, q2 = 0.2.*
 
 ```python
 actuarial_science_ai999x.solve('act_multiple_decrement_to_single', q1=0.1, q2=0.2)
@@ -2848,13 +3048,17 @@ $$
 - **Assumes:** $0 < q$'(1), q'$(2) < 1$; UDD in each single decrement table
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![q1 (probability of leaving by decrement 1, q(1)) against q1s (associated single decrement probability q'(1)) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-single-to-multiple-decrement-curve)
+![q1 (probability of leaving by decrement 1, q(1)) over q1s from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-single-to-multiple-decrement-field)
 
-*q1 (probability of leaving by decrement 1, q(1)) against q1s (associated single decrement probability q'(1)) from 0.02 to 0.98. One curve for each value of q2s (associated single decrement probability q'(2)): 0.2, 0.74. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, q1s = 0.1, q1 = 0.09.*
+*q1 (probability of leaving by decrement 1, q(1)) over q1s from 0.02 to 0.98 and q2s from 0.02 to 0.98: each of the 221 cells is one run of the model, shaded by its value (light 0.0102 to dark 0.9702); refused combinations are left blank. Marked: these inputs, q1s = 0.1, q2s = 0.2, q1 = 0.09. Your inputs: q1s = 0.1, q2s = 0.2.*
 
-![q1 (probability of leaving by decrement 1, q(1)) over q1s (associated single decrement probability q'(1)) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-single-to-multiple-decrement-field)
+![Probability of leaving by decrement 1, q(1) as q1s runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-single-to-multiple-decrement-live-1)
 
-*q1 (probability of leaving by decrement 1, q(1)) over q1s (associated single decrement probability q'(1)) from 0.02 to 0.98 and q2s (associated single decrement probability q'(2)) from 0.02 to 0.98: each of the 21 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 0.0102 to dark 0.9702); iso-lines at q1 = 0.2, 0.4, 0.6, 0.8. Marked: the worked example, q1s = 0.1, q2s = 0.2, q1 = 0.09.*
+*Probability of leaving by decrement 1, q(1) as q1s runs from 0.025 to 0.175, every other input as you entered it (41 solutions). Marked: your q1s = 0.1 gives q1 = 0.09. Your inputs: q1s = 0.1, q2s = 0.2.*
+
+![Probability of leaving by decrement 1, q(1) as q2s runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-single-to-multiple-decrement-live-2)
+
+*Probability of leaving by decrement 1, q(1) as q2s runs from 0.05 to 0.35, every other input as you entered it (29 solutions). Marked: your q2s = 0.2 gives q1 = 0.09. Your inputs: q1s = 0.1, q2s = 0.2.*
 
 ```python
 actuarial_science_ai999x.solve('act_single_to_multiple_decrement', q1s=0.1, q2s=0.2)
@@ -2901,13 +3105,17 @@ $$
 - **Assumes:** $0 < \lambda  \leq  500$; $k  \geq  0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![pmf (P(N = k)) against lam (Poisson mean number of claims lambda) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-poisson-frequency-curve)
+![pmf (P(N = k)) over k from 0 to 12 and lam from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-poisson-frequency-field)
 
-*pmf (P(N = k)) against lam (Poisson mean number of claims lambda) from 0.2 to 20 on a logarithmic axis. One curve for each value of k (number of claims): 3, 4, 5. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, lam = 2, pmf = 0.180447.*
+*pmf (P(N = k)) over k from 0 to 12 and lam from 0.2 to 20 (logarithmic vertical axis): each of the 169 cells is one run of the model, shaded by its value (light 7.001e-18 to dark 0.8187); refused combinations are left blank. Marked: these inputs, k = 3, lam = 2, pmf = 0.1804. Your inputs: lam = 2, k = 3.*
 
-![pmf (P(N = k)) over k (number of claims) from 1 to 11 and lam (Poisson mean number of claims lambda) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-poisson-frequency-field)
+![Pmf as λ runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-poisson-frequency-live-1)
 
-*pmf (P(N = k)) over k (number of claims) from 1 to 11 and lam (Poisson mean number of claims lambda) from 0.2 to 20 (logarithmic vertical axis): each of the 11 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 4.2006e-16 to dark 0.367648, logarithmic shading); iso-lines at pmf = 1.00e-13, 1.00e-12, 1.00e-11, 1.00e-10, 1.00e-9. Marked: the worked example, k = 3, lam = 2, pmf = 0.180447.*
+*Pmf as λ runs from 0.5 to 3.5, every other input as you entered it (41 solutions). Marked: your λ = 2 gives pmf = 0.1804. Your inputs: lam = 2, k = 3.*
+
+![Pmf as k runs from 0 to 7, every other input as you entered it (8 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-poisson-frequency-live-2)
+
+*Pmf as k runs from 0 to 7, every other input as you entered it (8 solutions). Marked: your k = 3 gives pmf = 0.1804. Your inputs: lam = 2, k = 3.*
 
 ```python
 actuarial_science_ai999x.solve('act_poisson_frequency', lam=2.0, k=3)
@@ -2956,9 +3164,13 @@ $$
 - **Assumes:** r, $\beta > 0$; $k  \geq  0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![pmf (P(N = k)) against beta (negative binomial beta) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-negative-binomial-frequency-curve)
+![Pmf as β runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-negative-binomial-frequency-live-1)
 
-*pmf (P(N = k)) against beta (negative binomial beta) from 0.15 to 15 on a logarithmic axis. One curve for each value of k (number of claims): 3, 4, 5. Other inputs as in the worked example: r = 2.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, beta = 1.5, pmf = 0.13824.*
+*Pmf as β runs from 0.375 to 2.625, every other input as you entered it (41 solutions). Marked: your β = 1.5 gives pmf = 0.1382. Your inputs: r = 2, beta = 1.5, k = 3.*
+
+![Pmf as r runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-negative-binomial-frequency-live-2)
+
+*Pmf as r runs from 0.5 to 3.5, every other input as you entered it (29 solutions). Marked: your r = 2 gives pmf = 0.1382. Your inputs: r = 2, beta = 1.5, k = 3.*
 
 ```python
 actuarial_science_ai999x.solve('act_negative_binomial_frequency', r=2.0, beta=1.5, k=3)
@@ -3005,9 +3217,13 @@ $$
 - **Assumes:** moments non-negative; N and the X's independent
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![VarS (variance E[N] Var X + Var N E[X]^2) against EX (mean claim severity E[X]) from 100 to 10000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-compound-distribution-moments-curve)
+![VarS as EX runs from 250 to 1750, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-compound-distribution-moments-live-1)
 
-*VarS (variance E[N] Var X + Var N E[X]^2) against EX (mean claim severity E[X]) from 100 to 10000 on a logarithmic axis. One curve for each value of VarN (variance of the number of claims): 3, 1.5, 6. Other inputs as in the worked example: EN = 3.0, VarX = 250000.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, EX = 1000, VarS = 3.75e+06.*
+*VarS as EX runs from 250 to 1750, every other input as you entered it (41 solutions). Marked: your EX = 1000 gives VarS = 3.75e+06. Your inputs: EN = 3, VarN = 3, EX = 1000, VarX = 250000.*
+
+![VarS as EN runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-compound-distribution-moments-live-2)
+
+*VarS as EN runs from 0.75 to 5.25, every other input as you entered it (29 solutions). Marked: your EN = 3 gives VarS = 3.75e+06. Your inputs: EN = 3, VarN = 3, EX = 1000, VarX = 250000.*
 
 ```python
 actuarial_science_ai999x.solve('act_compound_distribution_moments', EN=3.0, VarN=3.0, EX=1000.0, VarX=250000.0)
@@ -3055,9 +3271,13 @@ $$
 - **Assumes:** $\lambda > 0$; moments positive; E[$X^{2}$] >= E[X]^2
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![var (lambda E[X^2]) against lam (Poisson mean number of claims lambda) from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-compound-poisson-moments-curve)
+![Skew as m3 runs from 6 to 42, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-compound-poisson-moments-live-1)
 
-*var (lambda E[X^2]) against lam (Poisson mean number of claims lambda) from 1.5 to 4.5. One curve for each value of m2 (E[X^2]): 6, 12. Other inputs as in the worked example: m1 = 2.0, m3 = 24.0. 31 points per curve computed by actuarial-science-ai999x; marked: the worked example, lam = 3, var = 18.*
+*Skew as m3 runs from 6 to 42, every other input as you entered it (41 solutions). Marked: your m3 = 24 gives skew = 0.9428. Your inputs: lam = 3, m1 = 2, m2 = 6, m3 = 24.*
+
+![Var as λ runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-compound-poisson-moments-live-2)
+
+*Var as λ runs from 0.75 to 5.25, every other input as you entered it (29 solutions). Marked: your λ = 3 gives var = 18. Your inputs: lam = 3, m1 = 2, m2 = 6, m3 = 24.*
 
 ```python
 actuarial_science_ai999x.solve('act_compound_poisson_moments', lam=3.0, m1=2.0, m2=6.0, m3=24.0)
@@ -3103,6 +3323,10 @@ $$
 - **Assumes:** one benefit per probability; $0  \leq  q  \leq  1$; $b > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![The answer for your inputs: mean (expected total claims sum q b) = 300](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-individual-risk-model-live-1)
+
+*The answer for your inputs: mean (expected total claims sum q b) = 300. Your inputs: q = 0.01, 0.02, 0.05, b = 10000, 5000, 2000.*
+
 ```python
 actuarial_science_ai999x.solve('act_individual_risk_model', q=[0.01, 0.02, 0.05], b=[10000.0, 5000.0, 2000.0])
 # -> mean = 300, var = 1.67e+06, prob_no_claim = 0.92169   (SOLVED)
@@ -3147,9 +3371,13 @@ $$
 - **Assumes:** variance > 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![prob_exceed (P(S > s) by the normal approximation) against s (threshold amount) from 500 to 50000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-normal-approximation-aggregate-curve)
+![P(S > s) by the normal approximation as s runs from 1250 to 8750, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-normal-approximation-aggregate-live-1)
 
-*prob_exceed (P(S > s) by the normal approximation) against s (threshold amount) from 500 to 50000 on a logarithmic axis. One curve for each value of mean (mean of aggregate losses): 3000, 1500, 6000. Other inputs as in the worked example: var = 1000000.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, s = 5000, prob_exceed = 0.0227501.*
+*P(S > s) by the normal approximation as s runs from 1250 to 8750, every other input as you entered it (41 solutions). Marked: your s = 5000 gives prob_exceed = 0.02275. Your inputs: mean = 3000, var = 1000000, s = 5000.*
+
+![P(S > s) by the normal approximation as mean runs from 750 to 5250, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-normal-approximation-aggregate-live-2)
+
+*P(S > s) by the normal approximation as mean runs from 750 to 5250, every other input as you entered it (29 solutions). Marked: your mean = 3000 gives prob_exceed = 0.02275. Your inputs: mean = 3000, var = 1000000, s = 5000.*
 
 ```python
 actuarial_science_ai999x.solve('act_normal_approximation_aggregate', mean=3000.0, var=1000000.0, s=5000.0)
@@ -3195,13 +3423,17 @@ $$
 - **Assumes:** $0 < \lambda  \leq  200$; severity probabilities add to 1; smax <= 300
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![P(S = s) for s = 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-panjer-poisson-series)
+![F smax as smax runs from 1 to 9, every other input as you entered it (9 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-panjer-poisson-live-1)
 
-*P(S = s) for s = 0..smax (a list) (g) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (6 values, first 0.135335, last 0.0985692, largest 0.157891). Inputs: lam = 2.0, f = [0.0, 0.5, 0.3, 0.2], smax = 5.*
+*F smax as smax runs from 1 to 9, every other input as you entered it (9 solutions). Marked: your smax = 5 gives F_smax = 0.8007. Your inputs: lam = 2, f = 0, 0.5, 0.3, 0.2, smax = 5.*
 
-![F_smax (P(S <= smax)) against smax (largest aggregate amount wanted) from 1 to 13](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-panjer-poisson-curve)
+![Every entry of g as computed for your inputs (6 entries: 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-panjer-poisson-live-2)
 
-*F_smax (P(S <= smax)) against smax (largest aggregate amount wanted) from 1 to 13. One curve for each value of lam (Poisson mean number of claims lambda): 2, 1, 4. Other inputs as in the worked example: f = [0.0, 0.5, 0.3, 0.2]. 13 points per curve computed by actuarial-science-ai999x; marked: the worked example, smax = 5, F_smax = 0.800734.*
+*Every entry of g as computed for your inputs (6 entries: 0.1353, 0.1353, 0.1489, 0.1579, 0.1247, 0.09857). Your inputs: lam = 2, f = 0, 0.5, 0.3, 0.2, smax = 5.*
+
+![F smax as λ runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-panjer-poisson-live-3)
+
+*F smax as λ runs from 0.5 to 3.5, every other input as you entered it (29 solutions). Marked: your λ = 2 gives F_smax = 0.8007. Your inputs: lam = 2, f = 0, 0.5, 0.3, 0.2, smax = 5.*
 
 ```python
 actuarial_science_ai999x.solve('act_panjer_poisson', lam=2.0, f=[0.0, 0.5, 0.3, 0.2], smax=5)
@@ -3249,13 +3481,17 @@ $$
 - **Assumes:** r, $\beta > 0$; severity probabilities add to 1; smax <= 300
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![P(S = s) for s = 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-panjer-negative-binomial-series)
+![F smax as smax runs from 1 to 9, every other input as you entered it (9 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-panjer-negative-binomial-live-1)
 
-*P(S = s) for s = 0..smax (a list) (g) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (6 values, first 0.25, last 0.0713086, largest 0.25). Inputs: r = 2.0, beta = 1.0, f = [0.0, 0.5, 0.3, 0.2], smax = 5.*
+*F smax as smax runs from 1 to 9, every other input as you entered it (9 solutions). Marked: your smax = 5 gives F_smax = 0.7774. Your inputs: r = 2, beta = 1, f = 0, 0.5, 0.3, 0.2, smax = 5.*
 
-![F_smax (P(S <= smax)) against r (negative binomial r) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-panjer-negative-binomial-curve)
+![Every entry of g as computed for your inputs (6 entries: 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-panjer-negative-binomial-live-2)
 
-*F_smax (P(S <= smax)) against r (negative binomial r) from 0.2 to 20 on a logarithmic axis. One curve for each value of beta (negative binomial beta): 1, 0.5, 2. Other inputs as in the worked example: f = [0.0, 0.5, 0.3, 0.2], smax = 5. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, r = 2, F_smax = 0.777441.*
+*Every entry of g as computed for your inputs (6 entries: 0.25, 0.125, 0.1219, 0.1219, 0.08738, 0.07131). Your inputs: r = 2, beta = 1, f = 0, 0.5, 0.3, 0.2, smax = 5.*
+
+![F smax as r runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-panjer-negative-binomial-live-3)
+
+*F smax as r runs from 0.5 to 3.5, every other input as you entered it (29 solutions). Marked: your r = 2 gives F_smax = 0.7774. Your inputs: r = 2, beta = 1, f = 0, 0.5, 0.3, 0.2, smax = 5.*
 
 ```python
 actuarial_science_ai999x.solve('act_panjer_negative_binomial', r=2.0, beta=1.0, f=[0.0, 0.5, 0.3, 0.2], smax=5)
@@ -3302,13 +3538,17 @@ $$
 - **Assumes:** $0 < \lambda  \leq  200$; severity probabilities add to 1; whole-number retention
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![premium (net stop-loss premium E[(S - d)+]) against d (retention (whole number of units)) from 1 to 11](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-stop-loss-premium-curve)
+![premium (net stop-loss premium E[(S - d)+]) over lam from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-stop-loss-premium-field)
 
-*premium (net stop-loss premium E[(S - d)+]) against d (retention (whole number of units)) from 1 to 11. One curve for each value of lam (Poisson mean number of claims lambda): 2, 1, 4. Other inputs as in the worked example: f = [0.0, 0.5, 0.3, 0.2]. 11 points per curve computed by actuarial-science-ai999x; marked: the worked example, d = 3, premium = 1.22555.*
+*premium (net stop-loss premium E[(S - d)+]) over lam from 0.2 to 20 and d from 0 to 10 (logarithmic horizontal axis): each of the 187 cells is one run of the model, shaded by its value (light 1.194e-06 to dark 34, logarithmic shading); refused combinations are left blank. Marked: these inputs, lam = 2, d = 3, premium = 1.226. Your inputs: lam = 2, f = 0, 0.5, 0.3, 0.2, d = 3.*
 
-![premium (net stop-loss premium E[(S - d)+]) over lam (Poisson mean number of claims lambda) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-stop-loss-premium-field)
+![Net stop-loss premium E[(S - d)+] as λ runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-stop-loss-premium-live-1)
 
-*premium (net stop-loss premium E[(S - d)+]) over lam (Poisson mean number of claims lambda) from 0.2 to 20 and d (retention (whole number of units)) from 1 to 11 (logarithmic horizontal axis): each of the 21 × 11 cells is one run of actuarial-science-ai999x, shaded by its value (light 2.6505e-07 to dark 33, logarithmic shading); iso-lines at premium = 1.00e-6, 1.00e-5, 1.00e-4, 0.001, 0.01, 0.1, 1. Other inputs as in the worked example: f = [0.0, 0.5, 0.3, 0.2]. Marked: the worked example, lam = 2, d = 3, premium = 1.22555.*
+*Net stop-loss premium E[(S - d)+] as λ runs from 0.5 to 3.5, every other input as you entered it (29 solutions). Marked: your λ = 2 gives premium = 1.226. Your inputs: lam = 2, f = 0, 0.5, 0.3, 0.2, d = 3.*
+
+![Net stop-loss premium E[(S - d)+] as d runs from 0 to 7, every other input as you entered it (8 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-stop-loss-premium-live-2)
+
+*Net stop-loss premium E[(S - d)+] as d runs from 0 to 7, every other input as you entered it (8 solutions). Marked: your d = 3 gives premium = 1.226. Your inputs: lam = 2, f = 0, 0.5, 0.3, 0.2, d = 3.*
 
 ```python
 actuarial_science_ai999x.solve('act_stop_loss_premium', lam=2.0, f=[0.0, 0.5, 0.3, 0.2], d=3)
@@ -3356,13 +3596,17 @@ $$
 - **Assumes:** $\theta > 0$; $d  \geq  0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![per_loss (expected payment per loss E[(X - d)+]) against theta (mean loss theta) from 100 to 10000 on a logarithmic axis, logarithmic output axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-deductible-curve)
+![per_loss (expected payment per loss E[(X - d)+]) over theta from 100 to 1e+04 and d from 50 to 5000 (logarithmic axes): each of the 221 cells is one run of the model, shaded by its value (light 0 to dark 9950); refused combinations are left blank](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-deductible-field)
 
-*per_loss (expected payment per loss E[(X - d)+]) against theta (mean loss theta) from 100 to 10000 on a logarithmic axis, logarithmic output axis. One curve for each value of d (ordinary deductible): 500, 250, 1000. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, theta = 1000, per_loss = 606.531.*
+*per_loss (expected payment per loss E[(X - d)+]) over theta from 100 to 1e+04 and d from 50 to 5000 (logarithmic axes): each of the 221 cells is one run of the model, shaded by its value (light 0 to dark 9950); refused combinations are left blank. Marked: these inputs, theta = 1000, d = 500, per_loss = 606.5. Your inputs: theta = 1000, d = 500.*
 
-![per_loss (expected payment per loss E[(X - d)+]) over theta (mean loss theta) from 100 to 10000 and d (ordinary deductible) from 50 to 5000 (logarithmic axes): each of the 21 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 0 to dark 9950](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-deductible-field)
+![Expected payment per loss E[(X - d)+] as θ runs from 250 to 1750, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-deductible-live-1)
 
-*per_loss (expected payment per loss E[(X - d)+]) over theta (mean loss theta) from 100 to 10000 and d (ordinary deductible) from 50 to 5000 (logarithmic axes): each of the 21 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 0 to dark 9950.12); iso-lines at per_loss = 2000, 4000, 6000, 8000. Marked: the worked example, theta = 1000, d = 500, per_loss = 606.531.*
+*Expected payment per loss E[(X - d)+] as θ runs from 250 to 1750, every other input as you entered it (41 solutions). Marked: your θ = 1000 gives per_loss = 606.5. Your inputs: theta = 1000, d = 500.*
+
+![Expected payment per loss E[(X - d)+] as d runs from 125 to 875, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-deductible-live-2)
+
+*Expected payment per loss E[(X - d)+] as d runs from 125 to 875, every other input as you entered it (29 solutions). Marked: your d = 500 gives per_loss = 606.5. Your inputs: theta = 1000, d = 500.*
 
 ```python
 actuarial_science_ai999x.solve('act_exponential_deductible', theta=1000.0, d=500.0)
@@ -3411,13 +3655,17 @@ $$
 - **Assumes:** $\alpha > 1$; $\theta > 0$; $d  \geq  0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![per_loss (expected payment per loss E[(X - d)+]) against alpha (Pareto shape alpha (> 1)), with d = 500, theta = 2000](https://huggingface.co/AI999X/actuarial-science-ai999x/resolve/main/figures/act-pareto-deductible-per-loss-vs-alpha.svg)
+![per_loss (expected payment per loss E[(X - d)+]) against alpha from 1](https://huggingface.co/AI999X/actuarial-science-ai999x/resolve/main/figures/act-pareto-deductible-per-loss-vs-alpha.svg)
 
-*per_loss (expected payment per loss E[(X - d)+]) against alpha (Pareto shape alpha (> 1)), with d = 500, theta = 2000. 31 points computed by actuarial-science-ai999x; marked: alpha = 3, per_loss = 640.*
+*per_loss (expected payment per loss E[(X - d)+]) against alpha from 1.5 to 4.5, with theta = 2000, d = 500: 31 points, each computed by the model. Marked: alpha = 3, per_loss = 640. Your inputs: alpha = 3, theta = 2000, d = 500.*
 
-![per_loss (expected payment per loss E[(X - d)+]) against theta (Pareto scale theta) from 200 to 20000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pareto-deductible-curve)
+![Expected payment per loss E[(X - d)+] as α runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pareto-deductible-live-1)
 
-*per_loss (expected payment per loss E[(X - d)+]) against theta (Pareto scale theta) from 200 to 20000 on a logarithmic axis. One curve for each value of alpha (Pareto shape alpha (> 1)): 3, 1.5, 6. Other inputs as in the worked example: d = 500.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, theta = 2000, per_loss = 640.*
+*Expected payment per loss E[(X - d)+] as α runs from 1.087 to 5.25, every other input as you entered it (38 solutions). Marked: your α = 3 gives per_loss = 640. Your inputs: alpha = 3, theta = 2000, d = 500.*
+
+![Expected payment per loss E[(X - d)+] as θ runs from 500 to 3500, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pareto-deductible-live-2)
+
+*Expected payment per loss E[(X - d)+] as θ runs from 500 to 3500, every other input as you entered it (29 solutions). Marked: your θ = 2000 gives per_loss = 640. Your inputs: alpha = 3, theta = 2000, d = 500.*
 
 ```python
 actuarial_science_ai999x.solve('act_pareto_deductible', alpha=3.0, theta=2000.0, d=500.0)
@@ -3466,9 +3714,13 @@ $$
 - **Assumes:** $\sigma > 0$; $d  \geq  0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![per_loss (expected payment per loss E[(X - d)+]) against sigma (standard deviation of the log of the loss) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-lognormal-deductible-curve)
+![Expected payment per loss E[(X - d)+] as μ runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-lognormal-deductible-live-1)
 
-*per_loss (expected payment per loss E[(X - d)+]) against sigma (standard deviation of the log of the loss) from 0.1 to 10 on a logarithmic axis, logarithmic output axis. One curve for each value of mu (mean of the log of the loss): 7, 14. Other inputs as in the worked example: d = 1000.0. 34 points per curve computed by actuarial-science-ai999x; marked: the worked example, sigma = 1, per_loss = 1022.94.*
+*Expected payment per loss E[(X - d)+] as μ runs from 1.75 to 12.25, every other input as you entered it (41 solutions). Marked: your μ = 7 gives per_loss = 1023. Your inputs: mu = 7, sigma = 1, d = 1000.*
+
+![Expected payment per loss E[(X - d)+] as σ runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-lognormal-deductible-live-2)
+
+*Expected payment per loss E[(X - d)+] as σ runs from 0.25 to 1.75, every other input as you entered it (29 solutions). Marked: your σ = 1 gives per_loss = 1023. Your inputs: mu = 7, sigma = 1, d = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_lognormal_deductible', mu=7.0, sigma=1.0, d=1000.0)
@@ -3517,9 +3769,13 @@ $$
 - **Assumes:** $\theta > 0$; $0  \leq  d < u$; $0 < c  \leq  1$; $0  \leq  r < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![per_loss (expected payment per loss) against u (policy limit (maximum covered loss)) from 300 to 30000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-coverage-modifications-curve)
+![Expected payment per loss as θ runs from 250 to 1750, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-coverage-modifications-live-1)
 
-*per_loss (expected payment per loss) against u (policy limit (maximum covered loss)) from 300 to 30000 on a logarithmic axis. One curve for each value of theta (mean loss theta before inflation): 1000, 500, 2000. Other inputs as in the worked example: d = 200.0, c = 0.8, r = 0.1. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, u = 3000, per_loss = 676.153.*
+*Expected payment per loss as θ runs from 250 to 1750, every other input as you entered it (41 solutions). Marked: your θ = 1000 gives per_loss = 676.2. Your inputs: theta = 1000, d = 200, u = 3000, c = 0.8, r = 0.1.*
+
+![Expected payment per loss as u runs from 750 to 5250, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-coverage-modifications-live-2)
+
+*Expected payment per loss as u runs from 750 to 5250, every other input as you entered it (29 solutions). Marked: your u = 3000 gives per_loss = 676.2. Your inputs: theta = 1000, d = 200, u = 3000, c = 0.8, r = 0.1.*
 
 ```python
 actuarial_science_ai999x.solve('act_exponential_coverage_modifications', theta=1000.0, d=200.0, u=3000.0, c=0.8, r=0.1)
@@ -3569,9 +3825,13 @@ $$
 - **Assumes:** $\alpha > 1$; $\theta > 0$; $0  \leq  d < u$; $0 < c  \leq  1$; $0  \leq  r < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![per_loss (expected payment per loss) against theta (Pareto scale theta before inflation) from 200 to 20000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pareto-coverage-modifications-curve)
+![Expected payment per loss as α runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pareto-coverage-modifications-live-1)
 
-*per_loss (expected payment per loss) against theta (Pareto scale theta before inflation) from 200 to 20000 on a logarithmic axis. One curve for each value of alpha (Pareto shape alpha (> 1)): 3, 1.5, 6. Other inputs as in the worked example: d = 500.0, u = 5000.0, c = 0.8, r = 0.05. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, theta = 2000, per_loss = 474.503.*
+*Expected payment per loss as α runs from 1.087 to 5.25, every other input as you entered it (38 solutions). Marked: your α = 3 gives per_loss = 474.5. Your inputs: alpha = 3, theta = 2000, d = 500, u = 5000, c = 0.8, r = 0.05.*
+
+![Expected payment per loss as θ runs from 500 to 3500, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pareto-coverage-modifications-live-2)
+
+*Expected payment per loss as θ runs from 500 to 3500, every other input as you entered it (29 solutions). Marked: your θ = 2000 gives per_loss = 474.5. Your inputs: alpha = 3, theta = 2000, d = 500, u = 5000, c = 0.8, r = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_pareto_coverage_modifications', alpha=3.0, theta=2000.0, d=500.0, u=5000.0, c=0.8, r=0.05)
@@ -3618,9 +3878,13 @@ $$
 - **Assumes:** x, $d  \geq  0$; $u > d$; $0 < c  \leq  1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![payment (insurer payment c (min(x, u) - d)+) against x (loss amount) from 500 to 50000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-single-loss-payment-curve)
+![Insurer payment c (min(x, u) - d)+ as x runs from 1250 to 8750, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-single-loss-payment-live-1)
 
-*payment (insurer payment c (min(x, u) - d)+) against x (loss amount) from 500 to 50000 on a logarithmic axis. One curve for each value of u (policy limit (maximum covered loss)): 4000, 2000, 8000. Other inputs as in the worked example: d = 500.0, c = 0.8. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, x = 5000, payment = 2800.*
+*Insurer payment c (min(x, u) - d)+ as x runs from 1250 to 8750, every other input as you entered it (41 solutions). Marked: your x = 5000 gives payment = 2800. Your inputs: x = 5000, d = 500, u = 4000, c = 0.8.*
+
+![Insurer payment c (min(x, u) - d)+ as u runs from 1000 to 7000, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-single-loss-payment-live-2)
+
+*Insurer payment c (min(x, u) - d)+ as u runs from 1000 to 7000, every other input as you entered it (29 solutions). Marked: your u = 4000 gives payment = 2800. Your inputs: x = 5000, d = 500, u = 4000, c = 0.8.*
 
 ```python
 actuarial_science_ai999x.solve('act_single_loss_payment', x=5000.0, d=500.0, u=4000.0, c=0.8)
@@ -3666,9 +3930,13 @@ $$
 - **Assumes:** $\sigma > 0$; $0 < p < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![TVaR (tail value at risk E[X | X > VaR]) against mu (mean loss) from 500 to 1500](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-normal-curve)
+![TVaR as μ runs from 250 to 1750, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-normal-live-1)
 
-*TVaR (tail value at risk E[X | X > VaR]) against mu (mean loss) from 500 to 1500. One curve for each value of sigma (standard deviation of the loss): 200, 100, 400. Other inputs as in the worked example: p = 0.95. 31 points per curve computed by actuarial-science-ai999x; marked: the worked example, mu = 1000, TVaR = 1412.54.*
+*TVaR as μ runs from 250 to 1750, every other input as you entered it (41 solutions). Marked: your μ = 1000 gives TVaR = 1413. Your inputs: mu = 1000, sigma = 200, p = 0.95.*
+
+![TVaR as p runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-normal-live-2)
+
+*TVaR as p runs from 0.2375 to 0.95, every other input as you entered it (15 solutions). Marked: your p = 0.95 gives TVaR = 1413. Your inputs: mu = 1000, sigma = 200, p = 0.95.*
 
 ```python
 actuarial_science_ai999x.solve('act_var_tvar_normal', mu=1000.0, sigma=200.0, p=0.95)
@@ -3713,9 +3981,13 @@ $$
 - **Assumes:** $\theta > 0$; $0 < p < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![TVaR (tail value at risk E[X | X > VaR]) against p (security level (95% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-exponential-curve)
+![TVaR as p runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-exponential-live-1)
 
-*TVaR (tail value at risk E[X | X > VaR]) against p (security level (95% or 0.95)) from 0.475 to 1.425. One curve for each value of theta (mean loss theta): 1000, 500, 2000. 17 points per curve computed by actuarial-science-ai999x; marked: the worked example, p = 0.95, TVaR = 3995.73.*
+*TVaR as p runs from 0.2375 to 0.9856, every other input as you entered it (22 solutions). Marked: your p = 0.95 gives TVaR = 3996. Your inputs: theta = 1000, p = 0.95.*
+
+![TVaR as θ runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-exponential-live-2)
+
+*TVaR as θ runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your θ = 1000 gives TVaR = 3996. Your inputs: theta = 1000, p = 0.95.*
 
 ```python
 actuarial_science_ai999x.solve('act_var_tvar_exponential', theta=1000.0, p=0.95)
@@ -3761,9 +4033,13 @@ $$
 - **Assumes:** $\alpha > 1$; $\theta > 0$; $0 < p < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![TVaR (tail value at risk E[X | X > VaR]) against alpha (Pareto shape alpha (> 1)) from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-pareto-curve)
+![TVaR as p runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-pareto-live-1)
 
-*TVaR (tail value at risk E[X | X > VaR]) against alpha (Pareto shape alpha (> 1)) from 1.5 to 4.5. One curve for each value of theta (Pareto scale theta): 2000, 1000, 4000. Other inputs as in the worked example: p = 0.95. 31 points per curve computed by actuarial-science-ai999x; marked: the worked example, alpha = 3, TVaR = 6143.25.*
+*TVaR as p runs from 0.2375 to 0.9856, every other input as you entered it (22 solutions). Marked: your p = 0.95 gives TVaR = 6143. Your inputs: alpha = 3, theta = 2000, p = 0.95.*
+
+![TVaR as α runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-pareto-live-2)
+
+*TVaR as α runs from 1.071 to 5.25, every other input as you entered it (27 solutions). Marked: your α = 3 gives TVaR = 6143. Your inputs: alpha = 3, theta = 2000, p = 0.95.*
 
 ```python
 actuarial_science_ai999x.solve('act_var_tvar_pareto', alpha=3.0, theta=2000.0, p=0.95)
@@ -3809,9 +4085,13 @@ $$
 - **Assumes:** $\sigma > 0$; $0 < p < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![TVaR (tail value at risk E[X | X > VaR]) against sigma (standard deviation of the log of the loss) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-lognormal-curve)
+![TVaR as μ runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-lognormal-live-1)
 
-*TVaR (tail value at risk E[X | X > VaR]) against sigma (standard deviation of the log of the loss) from 0.1 to 10 on a logarithmic axis, logarithmic output axis. One curve for each value of mu (mean of the log of the loss): 7, 3.5, 14. Other inputs as in the worked example: p = 0.95. 34 points per curve computed by actuarial-science-ai999x; marked: the worked example, sigma = 1, TVaR = 9384.14.*
+*TVaR as μ runs from 1.75 to 12.25, every other input as you entered it (41 solutions). Marked: your μ = 7 gives TVaR = 9384. Your inputs: mu = 7, sigma = 1, p = 0.95.*
+
+![TVaR as p runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-var-tvar-lognormal-live-2)
+
+*TVaR as p runs from 0.2375 to 0.95, every other input as you entered it (15 solutions). Marked: your p = 0.95 gives TVaR = 9384. Your inputs: mu = 7, sigma = 1, p = 0.95.*
 
 ```python
 actuarial_science_ai999x.solve('act_var_tvar_lognormal', mu=7.0, sigma=1.0, p=0.95)
@@ -3858,9 +4138,17 @@ $$
 - **Assumes:** mean, variance, loading >= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![premium (premium) against mean (expected loss) from 500 to 1500](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-premium-principles-curve)
+![Premium as mean runs from 250 to 1750, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-premium-principles-live-1)
 
-*premium (premium) against mean (expected loss) from 500 to 1500. One curve for each value of theta (loading factor): 0.2, 0.26, 0.74. Other inputs as in the worked example: var = 250000.0, principle = expected_value. 31 points per curve computed by actuarial-science-ai999x; marked: the worked example, mean = 1000, premium = 1200.*
+*Premium as mean runs from 250 to 1750, every other input as you entered it (41 solutions). Marked: your mean = 1000 gives premium = 1200. Your inputs: mean = 1000, var = 250000, theta = 0.2, principle = expected_value.*
+
+![Premium for every choice of principle, every other input as you entered it (highlighted: your choice)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-premium-principles-live-2)
+
+*Premium for every choice of principle, every other input as you entered it (highlighted: your choice). expected_value: 1200; variance: 5.1e+04; standard_deviation: 1100. Your inputs: mean = 1000, var = 250000, theta = 0.2, principle = expected_value.*
+
+![Premium as θ runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-premium-principles-live-3)
+
+*Premium as θ runs from 0.05 to 0.35, every other input as you entered it (29 solutions). Marked: your θ = 0.2 gives premium = 1200. Your inputs: mean = 1000, var = 250000, theta = 0.2, principle = expected_value.*
 
 ```python
 actuarial_science_ai999x.solve('act_premium_principles', mean=1000.0, var=250000.0, theta=0.2, principle='expected_value')
@@ -3905,17 +4193,21 @@ $$
 - **Assumes:** $0 < p < 1$; $0 < k < 1$; Poisson claim counts
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![n_full (expected claims needed for full credibility (z/k)^2) against p (probability level (90% or 0](https://huggingface.co/AI999X/actuarial-science-ai999x/resolve/main/figures/act-limited-fluctuation-full-credibility-n-full-vs-p.svg)
+![n_full (expected claims needed for full credibility (z/k)^2) over k from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-limited-fluctuation-full-credibility-field)
 
-*n_full (expected claims needed for full credibility (z/k)^2) against p (probability level (90% or 0.9)), with k = 0.05. 19 points computed by actuarial-science-ai999x; marked: p = 0.9, n_full = 1082.22.*
+*n_full (expected claims needed for full credibility (z/k)^2) over k from 0.0125 to 0.2 and p from 0.5 to 0.99 (logarithmic horizontal axis): each of the 221 cells is one run of the model, shaded by its value (light 11.37 to dark 4.246e+04, logarithmic shading); refused combinations are left blank. Marked: these inputs, k = 0.05, p = 0.9, n_full = 1082. Your inputs: p = 0.9, k = 0.05.*
 
-![n_full (expected claims needed for full credibility (z/k)^2) against p (probability level (90% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-limited-fluctuation-full-credibility-curve)
+![n_full (expected claims needed for full credibility (z/k)^2) against p from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-limited-fluctuation-full-credibility-n-full-vs-p)
 
-*n_full (expected claims needed for full credibility (z/k)^2) against p (probability level (90% or 0.9)) from 0.02 to 0.98. One curve for each value of k (tolerance as a fraction of the mean (5% or 0.05)): 0.05, 0.26, 0.74. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, p = 0.9, n_full = 1082.22.*
+*n_full (expected claims needed for full credibility (z/k)^2) against p from 0.5 to 0.99, with k = 0.05: 31 points, each computed by the model. Marked: p = 0.9, n_full = 1082. Your inputs: p = 0.9, k = 0.05.*
 
-![n_full (expected claims needed for full credibility (z/k)^2) over k (tolerance as a fraction of the mean (5% or 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-limited-fluctuation-full-credibility-field)
+![Expected claims needed for full credibility](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-limited-fluctuation-full-credibility-live-1)
 
-*n_full (expected claims needed for full credibility (z/k)^2) over k (tolerance as a fraction of the mean (5% or 0.05)) from 0.02 to 0.98 and p (probability level (90% or 0.9)) from 0.02 to 0.98: each of the 21 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 0.000654363 to dark 13529.7, logarithmic shading); iso-lines at n_full = 0.001, 0.01, 0.1, 1, 10, 100, 1000. Marked: the worked example, k = 0.05, p = 0.9, n_full = 1082.22.*
+*Expected claims needed for full credibility... as p runs from 0.225 to 0.9675, every other input as you entered it (23 solutions). Marked: your p = 0.9 gives n_full = 1082. Your inputs: p = 0.9, k = 0.05.*
+
+![Expected claims needed for full credibility](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-limited-fluctuation-full-credibility-live-2)
+
+*Expected claims needed for full credibility... as k runs from 0.0125 to 0.0875, every other input as you entered it (29 solutions). Marked: your k = 0.05 gives n_full = 1082. Your inputs: p = 0.9, k = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_limited_fluctuation_full_credibility', p=0.9, k=0.05)
@@ -3963,9 +4255,13 @@ $$
 - **Assumes:** $0 < p < 1$; $0 < k < 1$; Poisson claim counts
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![claims_aggregate (claims for full credibility of aggregate losses n0 (1 + CV^2)) against mean_x (mean claim severity) from 100 to 10000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-limited-fluctuation-severity-aggregate-curve)
+![Claims for full credibility of aggregate](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-limited-fluctuation-severity-aggregate-live-1)
 
-*claims_aggregate (claims for full credibility of aggregate losses n0 (1 + CV^2)) against mean_x (mean claim severity) from 100 to 10000 on a logarithmic axis. One curve for each value of sd_x (standard deviation of the claim severity): 2000, 1000, 4000. Other inputs as in the worked example: p = 0.9, k = 0.05. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, mean_x = 1000, claims_aggregate = 5411.09.*
+*Claims for full credibility of aggregate... as p runs from 0.225 to 0.9675, every other input as you entered it (23 solutions). Marked: your p = 0.9 gives claims_aggregate = 5411. Your inputs: p = 0.9, k = 0.05, mean_x = 1000, sd_x = 2000.*
+
+![Claims for full credibility of aggregate](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-limited-fluctuation-severity-aggregate-live-2)
+
+*Claims for full credibility of aggregate... as k runs from 0.0125 to 0.0875, every other input as you entered it (29 solutions). Marked: your k = 0.05 gives claims_aggregate = 5411. Your inputs: p = 0.9, k = 0.05, mean_x = 1000, sd_x = 2000.*
 
 ```python
 actuarial_science_ai999x.solve('act_limited_fluctuation_severity_aggregate', p=0.9, k=0.05, mean_x=1000.0, sd_x=2000.0)
@@ -4012,9 +4308,13 @@ $$
 - **Assumes:** $n  \geq  0$; $n_F > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Z (credibility factor) against n (observed (or expected) number of claims) from 30 to 3000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-partial-credibility-curve)
+![Credibility factor as n runs from 75 to 525, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-partial-credibility-live-1)
 
-*Z (credibility factor) against n (observed (or expected) number of claims) from 30 to 3000 on a logarithmic axis. One curve for each value of n_full (full credibility standard in claims): 1082, 541, 2164. Other inputs as in the worked example: xbar = 800.0, M = 1000.0. 41 points per curve computed by actuarial-science-ai999x; marked: the worked example, n = 300, Z = 0.526559.*
+*Credibility factor as n runs from 75 to 525, every other input as you entered it (41 solutions). Marked: your n = 300 gives Z = 0.5266. Your inputs: n = 300, n_full = 1082, xbar = 800, M = 1000.*
+
+![Credibility factor as n_full runs from 270](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-partial-credibility-live-2)
+
+*Credibility factor as n_full runs from 270.5 to 1894, every other input as you entered it (29 solutions). Marked: your n_full = 1082 gives Z = 0.5266. Your inputs: n = 300, n_full = 1082, xbar = 800, M = 1000.*
 
 ```python
 actuarial_science_ai999x.solve('act_partial_credibility', n=300.0, n_full=1082.0, xbar=800.0, M=1000.0)
@@ -4063,9 +4363,13 @@ $$
 - **Assumes:** EPV, VHM > 0; $n > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![premium (Buhlmann credibility premium) against mu (overall (collective) mean) from 500 to 1500](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-credibility-curve)
+![Buhlmann credibility premium as EPV runs from 1](https://huggingface.co/AI999X/actuarial-science-ai999x/resolve/main/figures/act-buhlmann-credibility-live-1.svg)
 
-*premium (Buhlmann credibility premium) against mu (overall (collective) mean) from 500 to 1500. One curve for each value of xbar (mean of the observations): 1200, 600, 2400. Other inputs as in the worked example: EPV = 50000.0, VHM = 10000.0, n = 5.0. 31 points per curve computed by actuarial-science-ai999x; marked: the worked example, mu = 1000, premium = 1100.*
+*Buhlmann credibility premium as EPV runs from 1.25e+04 to 8.75e+04, every other input as you entered it (41 solutions). Marked: your EPV = 5e+04 gives premium = 1100. Your inputs: mu = 1000, EPV = 50000, VHM = 10000, n = 5, xbar = 1200.*
+
+![Buhlmann credibility premium as VHM runs from 2500 to 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-credibility-live-2)
+
+*Buhlmann credibility premium as VHM runs from 2500 to 1.75e+04, every other input as you entered it (29 solutions). Marked: your VHM = 1e+04 gives premium = 1100. Your inputs: mu = 1000, EPV = 50000, VHM = 10000, n = 5, xbar = 1200.*
 
 ```python
 actuarial_science_ai999x.solve('act_buhlmann_credibility', mu=1000.0, EPV=50000.0, VHM=10000.0, n=5.0, xbar=1200.0)
@@ -4113,9 +4417,21 @@ $$
 - **Assumes:** at least 2 risks and 2 periods; estimated VHM > 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): X (input); premiums (returned)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-empirical-matrix)
+![X as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside premiums as the model returns it for these inputs](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-empirical-matrix)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): X (input); premiums (returned). Returned with them by actuarial-science-ai999x: EPV = 6.5, VHM = 5.83333, k = 1.11429, Z = 0.729167, mean = 7.*
+*X as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside premiums as the model returns it for these inputs. Also returned: EPV = 6.5, VHM = 5.833, k = 1.114, Z = 0.7292, mean = 7. Your inputs: X = 3 5 7; 6 12 9.*
+
+![Credibility factor n/(n + k) as X[1,3] runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-empirical-live-1)
+
+*Credibility factor n/(n + k) as X[1,3] runs from 1.75 to 10.41, every other input as you entered it (34 solutions). Marked: your X[1,3] = 7 gives Z = 0.7292. Your inputs: X = 3 5 7; 6 12 9.*
+
+![Every entry of premiums as computed for your inputs (2 entries: 5](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-empirical-live-2)
+
+*Every entry of premiums as computed for your inputs (2 entries: 5.542, 8.458). Your inputs: X = 3 5 7; 6 12 9.*
+
+![Credibility factor n/(n + k) as X[2,1] runs from 3](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-empirical-live-3)
+
+*Credibility factor n/(n + k) as X[2,1] runs from 3.107 to 10.5, every other input as you entered it (24 solutions). Marked: your X[2,1] = 6 gives Z = 0.7292. Your inputs: X = 3 5 7; 6 12 9.*
 
 ```python
 actuarial_science_ai999x.solve('act_buhlmann_empirical', X=[[3.0, 5.0, 7.0], [6.0, 12.0, 9.0]])
@@ -4165,13 +4481,21 @@ $$
 - **Assumes:** at least 2 risks and 2 periods; positive exposures; estimated VHM > 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![credibility premium per unit of exposure of each risk (a list) (premiums) at each credibility factor of each risk m_i/(m_i + k) (a list) (Z), both returned by actuarial-science-ai999x for the worked example (X = [[100](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-straub-series)
+![X and m as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside Z as the model returns it for these inputs](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-straub-matrix)
 
-*credibility premium per unit of exposure of each risk (a list) (premiums) at each credibility factor of each risk m_i/(m_i + k) (a list) (Z), both returned by actuarial-science-ai999x for the worked example (X = [[100.0, 120.0, 110.0], [200.0, 180.0, 230.0]], m = [[10.0, 20.0, 15.0], [30.0, 25.0, 20.0]]): 0.957486 → 114.59; 0.97405 → 200.466.*
+*X and m as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside Z as the model returns it for these inputs. Also returned: EPV = 7661, VHM = 3834, k = 1.998, mean = 167.9. Your inputs: X = 100 120 110; 200 180 230, m = 10 20 15; 30 25 20.*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): X (input); m (input); Z (returned)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-straub-matrix)
+![K as X[2,1] runs from 95 to 350, every other input as you entered it (35 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-straub-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): X (input); m (input); Z (returned). Returned with them by actuarial-science-ai999x: EPV = 7661.11, VHM = 3834.2, k = 1.9981, mean = 167.917.*
+*K as X[2,1] runs from 95 to 350, every other input as you entered it (35 solutions). Marked: your X[2,1] = 200 gives k = 1.998. Your inputs: X = 100 120 110; 200 180 230, m = 10 20 15; 30 25 20.*
+
+![Every entry of Z as computed for your inputs (2 entries: 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-straub-live-2)
+
+*Every entry of Z as computed for your inputs (2 entries: 0.9575, 0.9741). Your inputs: X = 100 120 110; 200 180 230, m = 10 20 15; 30 25 20.*
+
+![K as X[1,2] runs from 30 to 210, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-buhlmann-straub-live-3)
+
+*K as X[1,2] runs from 30 to 210, every other input as you entered it (29 solutions). Marked: your X[1,2] = 120 gives k = 1.998. Your inputs: X = 100 120 110; 200 180 230, m = 10 20 15; 30 25 20.*
 
 ```python
 actuarial_science_ai999x.solve('act_buhlmann_straub', X=[[100.0, 120.0, 110.0], [200.0, 180.0, 230.0]], m=[[10.0, 20.0, 15.0], [30.0, 25.0, 20.0]])
@@ -4220,13 +4544,17 @@ $$
 - **Assumes:** alpha, $\theta > 0$; whole-number counts
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![post_mean (posterior mean claim rate (alpha + sum x) theta/(1 + n theta)) against alpha (gamma prior shape alpha) from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-poisson-gamma-credibility-curve)
+![post_mean (posterior mean claim rate (alpha + sum x) theta/(1 + n thet…) over alpha from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-poisson-gamma-credibility-field)
 
-*post_mean (posterior mean claim rate (alpha + sum x) theta/(1 + n theta)) against alpha (gamma prior shape alpha) from 1.5 to 4.5. One curve for each value of theta (gamma prior scale theta): 0.5, 0.25, 1. Other inputs as in the worked example: counts = [2.0, 1.0, 3.0]. 31 points per curve computed by actuarial-science-ai999x; marked: the worked example, alpha = 3, post_mean = 1.8.*
+*post_mean (posterior mean claim rate (alpha + sum x) theta/(1 + n thet…) over alpha from 1.5 to 4.5 and theta from 0.05 to 5 (logarithmic vertical axis): each of the 221 cells is one run of the model, shaded by its value (light 0.3261 to dark 3.281); refused combinations are left blank. Marked: these inputs, alpha = 3, theta = 0.5, post_mean = 1.8. Your inputs: alpha = 3, theta = 0.5, counts = 2, 1, 3.*
 
-![post_mean (posterior mean claim rate (alpha + sum x) theta/(1 + n theta)) over alpha (gamma prior shape alpha) from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-poisson-gamma-credibility-field)
+![Posterior mean claim rate (alpha + sum x)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-poisson-gamma-credibility-live-1)
 
-*post_mean (posterior mean claim rate (alpha + sum x) theta/(1 + n theta)) over alpha (gamma prior shape alpha) from 1.5 to 4.5 and theta (gamma prior scale theta) from 0.05 to 5 (logarithmic vertical axis): each of the 21 × 15 cells is one run of actuarial-science-ai999x, shaded by its value (light 0.326087 to dark 3.28125); iso-lines at post_mean = 0.5, 1, 1.5, 2, 2.5, 3. Other inputs as in the worked example: counts = [2.0, 1.0, 3.0]. Marked: the worked example, alpha = 3, theta = 0.5, post_mean = 1.8.*
+*Posterior mean claim rate (alpha + sum x)... as α runs from 0.75 to 5.25, every other input as you entered it (41 solutions). Marked: your α = 3 gives post_mean = 1.8. Your inputs: alpha = 3, theta = 0.5, counts = 2, 1, 3.*
+
+![Posterior mean claim rate (alpha + sum x)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-poisson-gamma-credibility-live-2)
+
+*Posterior mean claim rate (alpha + sum x)... as θ runs from 0.125 to 0.875, every other input as you entered it (29 solutions). Marked: your θ = 0.5 gives post_mean = 1.8. Your inputs: alpha = 3, theta = 0.5, counts = 2, 1, 3.*
 
 ```python
 actuarial_science_ai999x.solve('act_poisson_gamma_credibility', alpha=3.0, theta=0.5, counts=[2.0, 1.0, 3.0])
@@ -4270,13 +4598,21 @@ $$
 - **Assumes:** square triangle with $N  \geq  2$; known cells positive, unknown cells 0; no tail factor
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![cumulative development factors to ultimate from each age, last = 1 (a list) (cdf) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (3 values, first 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-factors-series)
+![T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside cdf as the model returns it for these inputs](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-factors-matrix)
 
-*cumulative development factors to ultimate from each age, last = 1 (a list) (cdf) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (3 values, first 1.76667, last 1, largest 1.76667). Inputs: T = [[100.0, 150.0, 175.0], [110.0, 168.0, 0.0]….*
+*T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside cdf as the model returns it for these inputs. Your inputs: T = 100 150 175; 110 168 0....*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); cdf (returned)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-factors-matrix)
+![Ldf[1] and ldf[2] as T[1,3] runs from 43](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-factors-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); cdf (returned).*
+*Ldf[1] and ldf[2] as T[1,3] runs from 43.75 to 306.2, every other input as you entered it (41 solutions). Marked: your T[1,3] = 175 gives ldf[1] = 1.514. Your inputs: T = 100 150 175; 110 168 0....*
+
+![Every entry of ldf as computed for your inputs (2 entries: 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-factors-live-2)
+
+*Every entry of ldf as computed for your inputs (2 entries: 1.514, 1.167). Your inputs: T = 100 150 175; 110 168 0....*
+
+![Ldf[1] and ldf[2] as T[1,2] runs from 37](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-factors-live-3)
+
+*Ldf[1] and ldf[2] as T[1,2] runs from 37.5 to 262.5, every other input as you entered it (29 solutions). Marked: your T[1,2] = 150 gives ldf[1] = 1.514. Your inputs: T = 100 150 175; 110 168 0....*
 
 ```python
 actuarial_science_ai999x.solve('act_chain_ladder_factors', T=[[100.0, 150.0, 175.0], [110.0, 168.0, 0.0], [120.0, 0.0, 0.0]])
@@ -4322,13 +4658,21 @@ $$
 - **Assumes:** square triangle with $N  \geq  2$; known cells positive, unknown cells 0; no tail factor
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ultimate losses of each origin year (a list) (ultimate) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (3 values, first 175, last 212, largest 212); with reserve (reserve of each origin year (a list))](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-reserve-series)
+![T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside ultimate as the model returns it for these inputs](https://huggingface.co/AI999X/actuarial-science-ai999x/resolve/main/figures/act-chain-ladder-reserve-matrix.svg)
 
-*ultimate losses of each origin year (a list) (ultimate) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (3 values, first 175, last 212, largest 212); with reserve (reserve of each origin year (a list)). Inputs: T = [[100.0, 150.0, 175.0], [110.0, 168.0, 0.0]….*
+*T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside ultimate as the model returns it for these inputs. Also returned: total_reserve = 120. Your inputs: T = 100 150 175; 110 168 0....*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); ultimate (returned)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-reserve-matrix)
+![Total reserve as T[1,3] runs from 43](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-reserve-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); ultimate (returned). Returned with them by actuarial-science-ai999x: total_reserve = 120.*
+*Total reserve as T[1,3] runs from 43.75 to 306.2, every other input as you entered it (41 solutions). Marked: your T[1,3] = 175 gives total_reserve = 120. Your inputs: T = 100 150 175; 110 168 0....*
+
+![Every entry of ultimate as computed for your inputs (3 entries: 175, 196, 212)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-reserve-live-2)
+
+*Every entry of ultimate as computed for your inputs (3 entries: 175, 196, 212). Your inputs: T = 100 150 175; 110 168 0....*
+
+![Total reserve as T[1,2] runs from 37](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-reserve-live-3)
+
+*Total reserve as T[1,2] runs from 37.5 to 262.5, every other input as you entered it (29 solutions). Marked: your T[1,2] = 150 gives total_reserve = 120. Your inputs: T = 100 150 175; 110 168 0....*
 
 ```python
 actuarial_science_ai999x.solve('act_chain_ladder_reserve', T=[[100.0, 150.0, 175.0], [110.0, 168.0, 0.0], [120.0, 0.0, 0.0]])
@@ -4373,13 +4717,21 @@ $$
 - **Assumes:** square triangle with $N  \geq  2$; known cells positive, unknown cells 0; no tail factor
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ultimate losses of each origin year (a list) (ultimate) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (3 values, first 175, last 211](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-simple-average-series)
+![T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside ultimate as the model returns it for these inputs](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-simple-average-matrix)
 
-*ultimate losses of each origin year (a list) (ultimate) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (3 values, first 175, last 211.909, largest 211.909). Inputs: T = [[100.0, 150.0, 175.0], [110.0, 168.0, 0.0]….*
+*T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside ultimate as the model returns it for these inputs. Also returned: total_reserve = 119.9. Your inputs: T = 100 150 175; 110 168 0....*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); ultimate (returned)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-simple-average-matrix)
+![Total reserve as T[1,3] runs from 43](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-simple-average-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); ultimate (returned). Returned with them by actuarial-science-ai999x: total_reserve = 119.909.*
+*Total reserve as T[1,3] runs from 43.75 to 306.2, every other input as you entered it (41 solutions). Marked: your T[1,3] = 175 gives total_reserve = 119.9. Your inputs: T = 100 150 175; 110 168 0....*
+
+![Every entry of ldf as computed for your inputs (2 entries: 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-simple-average-live-2)
+
+*Every entry of ldf as computed for your inputs (2 entries: 1.514, 1.167). Your inputs: T = 100 150 175; 110 168 0....*
+
+![Total reserve as T[1,2] runs from 37](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-chain-ladder-simple-average-live-3)
+
+*Total reserve as T[1,2] runs from 37.5 to 262.5, every other input as you entered it (29 solutions). Marked: your T[1,2] = 150 gives total_reserve = 119.9. Your inputs: T = 100 150 175; 110 168 0....*
 
 ```python
 actuarial_science_ai999x.solve('act_chain_ladder_simple_average', T=[[100.0, 150.0, 175.0], [110.0, 168.0, 0.0], [120.0, 0.0, 0.0]])
@@ -4426,13 +4778,21 @@ $$
 - **Assumes:** square triangle; one positive premium per origin year; 0 < ELR <= 500%
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ultimate losses of each origin year (a list) (ultimate) returned by actuarial-science-ai999x for the worked example, one value for each P (earned premium of each origin year (a list)) (3 values, first 175, last 196](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-bornhuetter-ferguson-series)
+![T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside ultimate as the model returns it for these inputs](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-bornhuetter-ferguson-matrix)
 
-*ultimate losses of each origin year (a list) (ultimate) returned by actuarial-science-ai999x for the worked example, one value for each P (earned premium of each origin year (a list)) (3 values, first 175, last 196.377, largest 196.377); with reserve (reserve of each origin year (a list)). Inputs: T = [[100.0, 150.0, 175.0], [110.0, 168.0, 0.0]…, P = [200.0, 210.0, 220.0], elr = 0.8.*
+*T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside ultimate as the model returns it for these inputs. Also returned: total_reserve = 100.4. Your inputs: T = 100 150 175; 110 168 0..., P = 200, 210, 220, elr = 0.8.*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); ultimate (returned)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-bornhuetter-ferguson-matrix)
+![Total reserve as elr runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-bornhuetter-ferguson-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); ultimate (returned). Returned with them by actuarial-science-ai999x: total_reserve = 100.377. Other inputs: P = [200.0, 210.0, 220.0], elr = 0.8.*
+*Total reserve as elr runs from 0.2 to 1.4, every other input as you entered it (41 solutions). Marked: your elr = 0.8 gives total_reserve = 100.4. Your inputs: T = 100 150 175; 110 168 0..., P = 200, 210, 220, elr = 0.8.*
+
+![Every entry of ultimate as computed for your inputs (3 entries: 175, 192, 196](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-bornhuetter-ferguson-live-2)
+
+*Every entry of ultimate as computed for your inputs (3 entries: 175, 192, 196.4). Your inputs: T = 100 150 175; 110 168 0..., P = 200, 210, 220, elr = 0.8.*
+
+![Total reserve as P[3] runs from 110 to 326, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-bornhuetter-ferguson-live-3)
+
+*Total reserve as P[3] runs from 110 to 326, every other input as you entered it (29 solutions). Marked: your P[3] = 220 gives total_reserve = 100.4. Your inputs: T = 100 150 175; 110 168 0..., P = 200, 210, 220, elr = 0.8.*
 
 ```python
 actuarial_science_ai999x.solve('act_bornhuetter_ferguson', T=[[100.0, 150.0, 175.0], [110.0, 168.0, 0.0], [120.0, 0.0, 0.0]], P=[200.0, 210.0, 220.0], elr=0.8)
@@ -4479,13 +4839,21 @@ $$
 - **Assumes:** square triangle; one positive premium per origin year; no trend, no decay
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ultimate losses of each origin year (a list) (ultimate) returned by actuarial-science-ai999x for the worked example, one value for each P (earned premium of each origin year (a list)) (3 values, first 175, last 207](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-cape-cod-series)
+![T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside ultimate as the model returns it for these inputs](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-cape-cod-matrix)
 
-*ultimate losses of each origin year (a list) (ultimate) returned by actuarial-science-ai999x for the worked example, one value for each P (earned premium of each origin year (a list)) (3 values, first 175, last 207.613, largest 207.613); with reserve (reserve of each origin year (a list)). Inputs: T = [[100.0, 150.0, 175.0], [110.0, 168.0, 0.0]…, P = [200.0, 210.0, 220.0].*
+*T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside ultimate as the model returns it for these inputs. Also returned: elr = 0.9177, total_reserve = 115.1. Your inputs: T = 100 150 175; 110 168 0..., P = 200, 210, 220.*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); ultimate (returned)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-cape-cod-matrix)
+![Total reserve as P[3] runs from 110 to 326, every other input as you entered it (38 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-cape-cod-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); ultimate (returned). Returned with them by actuarial-science-ai999x: elr = 0.917689, total_reserve = 115.144. Other inputs: P = [200.0, 210.0, 220.0].*
+*Total reserve as P[3] runs from 110 to 326, every other input as you entered it (38 solutions). Marked: your P[3] = 220 gives total_reserve = 115.1. Your inputs: T = 100 150 175; 110 168 0..., P = 200, 210, 220.*
+
+![Every entry of ultimate as computed for your inputs (3 entries: 175, 195](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-cape-cod-live-2)
+
+*Every entry of ultimate as computed for your inputs (3 entries: 175, 195.5, 207.6). Your inputs: T = 100 150 175; 110 168 0..., P = 200, 210, 220.*
+
+![Total reserve as P[1] runs from 100 to 296, every other input as you entered it (30 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-cape-cod-live-3)
+
+*Total reserve as P[1] runs from 100 to 296, every other input as you entered it (30 solutions). Marked: your P[1] = 200 gives total_reserve = 115.1. Your inputs: T = 100 150 175; 110 168 0..., P = 200, 210, 220.*
 
 ```python
 actuarial_science_ai999x.solve('act_cape_cod', T=[[100.0, 150.0, 175.0], [110.0, 168.0, 0.0], [120.0, 0.0, 0.0]], P=[200.0, 210.0, 220.0])
@@ -4530,13 +4898,21 @@ $$
 - **Assumes:** square triangle with $N  \geq  4$; known cells positive, unknown cells 0; last $\sigma^{2}$ by Mack's extrapolation
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![standard error of each origin year's reserve (a list) (se) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (4 values, first 0, last 72](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mack-standard-error-series)
+![T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside se as the model returns it for these inputs](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mack-standard-error-matrix)
 
-*standard error of each origin year's reserve (a list) (se) returned by actuarial-science-ai999x for the worked example, one value for each position in the list (4 values, first 0, last 72.2173, largest 72.2173). Inputs: T = [[1000.0, 1800.0, 2100.0, 2200.0], [1100.0, 2….*
+*T as heat maps (rows and columns numbered; each panel shaded by its own largest magnitude, negative values in the second colour), beside se as the model returns it for these inputs. Also returned: total_se = 90.68. Your inputs: T = 1000 1800 2100 2200....*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); se (returned)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mack-standard-error-matrix)
+![Standard error of the total reserve as T[1,2] runs from 1780 to 1820, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mack-standard-error-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): T (input); se (returned). Returned with them by actuarial-science-ai999x: total_se = 90.6808.*
+*Standard error of the total reserve as T[1,2] runs from 1780 to 1820, every other input as you entered it (41 solutions). Marked: your T[1,2] = 1800 gives total_se = 90.68. Your inputs: T = 1000 1800 2100 2200....*
+
+![Every entry of se as computed for your inputs (4 entries: 0, 15](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mack-standard-error-live-2)
+
+*Every entry of se as computed for your inputs (4 entries: 0, 15.23, 34.56, 72.22). Your inputs: T = 1000 1800 2100 2200....*
+
+![Standard error of the total reserve as T[1,3] runs from 2080 to 2120, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-mack-standard-error-live-3)
+
+*Standard error of the total reserve as T[1,3] runs from 2080 to 2120, every other input as you entered it (29 solutions). Marked: your T[1,3] = 2100 gives total_se = 90.68. Your inputs: T = 1000 1800 2100 2200....*
 
 ```python
 actuarial_science_ai999x.solve('act_mack_standard_error', T=[[1000.0, 1800.0, 2100.0, 2200.0], [1100.0, 2000.0, 2300.0, 0.0], [1200.0, 2100.0, 0.0, 0.0], [1300.0, 0.0, 0.0, 0.0]])
@@ -4583,13 +4959,17 @@ $$
 - **Assumes:** one paid amount per premium; 0 < ELR <= 500%
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![expected ultimate losses (a list) (ultimate) returned by actuarial-science-ai999x for the worked example, one value for each P (earned premium of each origin year (a list)) (3 values, first 700, last 840, largest 840); with reserve (reserve of each origin year (a list))](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-expected-claims-method-series)
+![For each origin year: losses paid to date (input), and the ultimate and reserve the model returns: ultimate 700, 770, 840; reserve 50, 270, 540; total reserve 860](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-expected-claims-method-xy)
 
-*expected ultimate losses (a list) (ultimate) returned by actuarial-science-ai999x for the worked example, one value for each P (earned premium of each origin year (a list)) (3 values, first 700, last 840, largest 840); with reserve (reserve of each origin year (a list)). Inputs: P = [1000.0, 1100.0, 1200.0], elr = 0.7, paid = [650.0, 500.0, 300.0].*
+*For each origin year: losses paid to date (input), and the ultimate and reserve the model returns: ultimate 700, 770, 840; reserve 50, 270, 540; total reserve 860. Your inputs: P = 1000, 1100, 1200, elr = 0.7, paid = 650, 500, 300.*
 
-![The data paid (losses paid (or reported) to date of each origin year (a list)) against P (earned premium of each origin year (a list)) as given in the worked example (3 points); drawn on it from what actuarial-science-ai999x returned: the returned ultimate; the returned reserve](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-expected-claims-method-xy)
+![Total reserve as elr runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-expected-claims-method-live-1)
 
-*The data paid (losses paid (or reported) to date of each origin year (a list)) against P (earned premium of each origin year (a list)) as given in the worked example (3 points); drawn on it from what actuarial-science-ai999x returned: the returned ultimate; the returned reserve. Also returned: total_reserve = 860. Other inputs: elr = 0.7.*
+*Total reserve as elr runs from 0.175 to 1.225, every other input as you entered it (41 solutions). Marked: your elr = 0.7 gives total_reserve = 860. Your inputs: P = 1000, 1100, 1200, elr = 0.7, paid = 650, 500, 300.*
+
+![Every entry of ultimate as computed for your inputs (3 entries: 700, 770, 840)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-expected-claims-method-live-2)
+
+*Every entry of ultimate as computed for your inputs (3 entries: 700, 770, 840). Your inputs: P = 1000, 1100, 1200, elr = 0.7, paid = 650, 500, 300.*
 
 ```python
 actuarial_science_ai999x.solve('act_expected_claims_method', P=[1000.0, 1100.0, 1200.0], elr=0.7, paid=[650.0, 500.0, 300.0])
@@ -4638,9 +5018,13 @@ $$
 - **Assumes:** $EP > 0$; $0  \leq  F$, $V < 1$; $V + Q < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![change (indicated rate change (0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-loss-ratio-rate-change-curve)
+![Indicated rate change as L runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-loss-ratio-rate-change-live-1)
 
-*change (indicated rate change (0.05 = +5%)) against V (variable expense ratio) from 0.02 to 0.98. One curve for each value of L (projected ultimate losses and LAE): 650000, 325000, 1.3e+06. Other inputs as in the worked example: EP = 1000000.0, F = 0.1, Q = 0.05. 39 points per curve computed by actuarial-science-ai999x; marked: the worked example, V = 0.15, change = -0.0625.*
+*Indicated rate change as L runs from 1.625e+05 to 1.138e+06, every other input as you entered it (41 solutions). Marked: your L = 6.5e+05 gives change = -0.0625. Your inputs: L = 650000, EP = 1000000, F = 0.1, V = 0.15, Q = 0.05.*
+
+![Indicated rate change as EP runs from 2](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-loss-ratio-rate-change-live-2)
+
+*Indicated rate change as EP runs from 2.5e+05 to 1.75e+06, every other input as you entered it (29 solutions). Marked: your EP = 1e+06 gives change = -0.0625. Your inputs: L = 650000, EP = 1000000, F = 0.1, V = 0.15, Q = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_loss_ratio_rate_change', L=650000.0, EP=1000000.0, F=0.1, V=0.15, Q=0.05)
@@ -4688,9 +5072,13 @@ $$
 - **Assumes:** $X > 0$; $0  \leq  V < 1$; $V + Q < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![rate (indicated rate per exposure (PP + F)/(1 - V - Q)) against V (variable expense ratio) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pure-premium-rate-curve)
+![Indicated rate per exposure as X runs from 500 to 3500, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pure-premium-rate-live-1)
 
-*rate (indicated rate per exposure (PP + F)/(1 - V - Q)) against V (variable expense ratio) from 0.02 to 0.98. One curve for each value of L (projected ultimate losses and LAE): 500000, 250000, 1e+06. Other inputs as in the worked example: X = 2000.0, Fe = 30.0, Q = 0.05. 39 points per curve computed by actuarial-science-ai999x; marked: the worked example, V = 0.15, rate = 350.*
+*Indicated rate per exposure as X runs from 500 to 3500, every other input as you entered it (41 solutions). Marked: your X = 2000 gives rate = 350. Your inputs: L = 500000, X = 2000, Fe = 30, V = 0.15, Q = 0.05.*
+
+![Indicated rate per exposure as L runs from 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-pure-premium-rate-live-2)
+
+*Indicated rate per exposure as L runs from 1.25e+05 to 8.75e+05, every other input as you entered it (29 solutions). Marked: your L = 5e+05 gives rate = 350. Your inputs: L = 500000, X = 2000, Fe = 30, V = 0.15, Q = 0.05.*
 
 ```python
 actuarial_science_ai999x.solve('act_pure_premium_rate', L=500000.0, X=2000.0, Fe=30.0, V=0.15, Q=0.05)
@@ -4737,9 +5125,9 @@ $$
 - **Assumes:** one indicator per time; positive times; indicators 0 or 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![S (Kaplan-Meier survival estimate S(t)) against t (time at which the survival is wanted) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-kaplan-meier-curve)
+![Kaplan-Meier survival estimate S(t) as t runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-kaplan-meier-live-1)
 
-*S (Kaplan-Meier survival estimate S(t)) against t (time at which the survival is wanted) from 0.3 to 30 on a logarithmic axis. Other inputs as in the worked example: times = [1.0, 2.0, 2.0, 3.0, 5.0], events = [1.0, 1.0, 0.0, 1.0, 0.0]. 41 points computed by actuarial-science-ai999x; marked: the worked example, t = 3, S = 0.3.*
+*Kaplan-Meier survival estimate S(t) as t runs from 0.75 to 5.25, every other input as you entered it (41 solutions). Marked: your t = 3 gives S = 0.3. Your inputs: times = 1, 2, 2, 3, 5, events = 1, 1, 0, 1, 0, t = 3.*
 
 ```python
 actuarial_science_ai999x.solve('act_kaplan_meier', times=[1.0, 2.0, 2.0, 3.0, 5.0], events=[1.0, 1.0, 0.0, 1.0, 0.0], t=3.0)
@@ -4786,9 +5174,9 @@ $$
 - **Assumes:** one indicator per time; positive times; indicators 0 or 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![H (Nelson-Aalen cumulative hazard H(t)) against t (time at which the estimate is wanted) from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-nelson-aalen-curve)
+![Nelson-Aalen cumulative hazard H(t) as t runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-nelson-aalen-live-1)
 
-*H (Nelson-Aalen cumulative hazard H(t)) against t (time at which the estimate is wanted) from 0.3 to 30 on a logarithmic axis. Other inputs as in the worked example: times = [1.0, 2.0, 2.0, 3.0, 5.0], events = [1.0, 1.0, 0.0, 1.0, 0.0]. 41 points computed by actuarial-science-ai999x; marked: the worked example, t = 3, H = 0.95.*
+*Nelson-Aalen cumulative hazard H(t) as t runs from 0.75 to 5.25, every other input as you entered it (41 solutions). Marked: your t = 3 gives H = 0.95. Your inputs: times = 1, 2, 2, 3, 5, events = 1, 1, 0, 1, 0, t = 3.*
 
 ```python
 actuarial_science_ai999x.solve('act_nelson_aalen', times=[1.0, 2.0, 2.0, 3.0, 5.0], events=[1.0, 1.0, 0.0, 1.0, 0.0], t=3.0)
@@ -4835,9 +5223,13 @@ $$
 - **Assumes:** one indicator per time; positive times; at least one death
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The input times (observed times (a list)) as given in the worked example, one value per position (5 values); marked from what actuarial-science-ai999x returned: mean = 4](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-mle-data)
+![The observed times 1, 2, 2, 3, 5 in order, an event (death) in the accent colour and a censored time in grey; the model returns hazard = 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-mle-data)
 
-*The input times (observed times (a list)) as given in the worked example, one value per position (5 values); marked from what actuarial-science-ai999x returned: mean = 4.33333. Also returned: hazard = 0.230769, S = 0.50042. Other inputs: events = [1.0, 1.0, 0.0, 1.0, 0.0], t = 3.0.*
+*The observed times 1, 2, 2, 3, 5 in order, an event (death) in the accent colour and a censored time in grey; the model returns hazard = 0.2308, mean = 4.333, S = 0.5004. Your inputs: times = 1, 2, 2, 3, 5, events = 1, 1, 0, 1, 0, t = 3.*
+
+![Fitted survival probability exp(-lambda t) as t runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-exponential-mle-live-1)
+
+*Fitted survival probability exp(-lambda t) as t runs from 0.75 to 5.25, every other input as you entered it (41 solutions). Marked: your t = 3 gives S = 0.5004. Your inputs: times = 1, 2, 2, 3, 5, events = 1, 1, 0, 1, 0, t = 3.*
 
 ```python
 actuarial_science_ai999x.solve('act_exponential_mle', times=[1.0, 2.0, 2.0, 3.0, 5.0], events=[1.0, 1.0, 0.0, 1.0, 0.0], t=3.0)
@@ -4888,13 +5280,17 @@ $$
 - **Assumes:** one change per date, dates increasing; -100% < change < 100%; whole calendar years, increasing; earned premiums >= 0; $0 < T  \leq  1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![on-level factor of each year: current level / average level (a list) (factors) returned by actuarial-science-ai999x for the worked example, one value for each years (calendar years of the earned premium (whole numbers, increasing)) (3 values, first 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-on-level-premium-series)
+![Total earned premium at current rate level as dates[1] runs from 2002 to 2042, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-on-level-premium-live-1)
 
-*on-level factor of each year: current level / average level (a list) (factors) returned by actuarial-science-ai999x for the worked example, one value for each years (calendar years of the earned premium (whole numbers, increasing)) (3 values, first 1.08642, last 1, largest 1.08642); with average_level (average rate level of each calendar year's earned premium (a list)), on_level_EP (earned premium at current rate level of each year (a list)). Inputs: dates = [2022.5], changes = [0.1], years = [2022.0, 2023.0, 2024.0], EP = [1000.0, 1100.0, 1200.0], T = 1.0.*
+*Total earned premium at current rate level as dates[1] runs from 2002 to 2042, every other input as you entered it (41 solutions). Marked: your dates[1] = 2022 gives total_on_level_EP = 3399. Your inputs: dates = 2022.5, changes = 0.1, years = 2022, 2023, 2024, EP = 1000, 1100, 1200, T = 1.*
 
-![The data EP (earned premium of each calendar year (at the rates then charged)) against years (calendar years of the earned premium (whole numbers, increasing)) as given in the worked example (3 points); drawn on it from what actuarial-science-ai999x returned: the returned average_level; the returned factors; the returned on_level_EP](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-on-level-premium-xy)
+![Every entry of average_level as computed for your inputs (3 entries: 1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-on-level-premium-live-2)
 
-*The data EP (earned premium of each calendar year (at the rates then charged)) against years (calendar years of the earned premium (whole numbers, increasing)) as given in the worked example (3 points); drawn on it from what actuarial-science-ai999x returned: the returned average_level; the returned factors; the returned on_level_EP. Also returned: total_on_level_EP = 3399.06, current_level = 1.1. Other inputs: dates = [2022.5], changes = [0.1], T = 1.0.*
+*Every entry of average_level as computed for your inputs (3 entries: 1.012, 1.087, 1.1). Your inputs: dates = 2022.5, changes = 0.1, years = 2022, 2023, 2024, EP = 1000, 1100, 1200, T = 1.*
+
+![Total earned premium at current rate level as changes[1] runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-on-level-premium-live-3)
+
+*Total earned premium at current rate level as changes[1] runs from 0.025 to 0.175, every other input as you entered it (29 solutions). Marked: your changes[1] = 0.1 gives total_on_level_EP = 3399. Your inputs: dates = 2022.5, changes = 0.1, years = 2022, 2023, 2024, EP = 1000, 1100, 1200, T = 1.*
 
 ```python
 actuarial_science_ai999x.solve('act_on_level_premium', dates=[2022.5], changes=[0.1], years=[2022.0, 2023.0, 2024.0], EP=[1000.0, 1100.0, 1200.0], T=1.0)
@@ -4946,13 +5342,17 @@ $$
 - **Assumes:** one year per amount; whole years; amounts >= 0; -100% < trend < 100%; to_date >= year + 0.5
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The plane vectors of the worked example as arrows from the origin: input amounts = (100000, 120000), years = (2022, 2023); returned by actuarial-science-ai999x: periods = (3, 2), factors = (1](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-trend-projection-vectors)
+![Total of the trended amounts as to_date runs from 2024 to 2046, every other input as you entered it (23 solutions)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-trend-projection-live-1)
 
-*The plane vectors of the worked example as arrows from the origin: input amounts = (100000, 120000), years = (2022, 2023); returned by actuarial-science-ai999x: periods = (3, 2), factors = (1.15762, 1.1025); also returned total_trended = 248062. Other inputs: trend = 0.05, to_date = 2025.5. Marked: the tip of each returned vector.*
+*Total of the trended amounts as to_date runs from 2024 to 2046, every other input as you entered it (23 solutions). Marked: your to_date = 2026 gives total_trended = 2.481e+05. Your inputs: amounts = 100000, 120000, years = 2022, 2023, trend = 0.05, to_date = 2025.5.*
 
-![trend period of each year in years: to_date - (year + 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-trend-projection-series)
+![Every entry of periods as computed for your inputs (2 entries: 3, 2)](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-trend-projection-live-2)
 
-*trend period of each year in years: to_date - (year + 0.5) (a list) (periods) at each trended amount of each year (a list) (trended), both returned by actuarial-science-ai999x for the worked example (amounts = [100000.0, 120000.0], years = [2022.0, 2023.0], trend = 0.05, to_date = 2025.5): 115762 → 3; 132300 → 2.*
+*Every entry of periods as computed for your inputs (2 entries: 3, 2). Your inputs: amounts = 100000, 120000, years = 2022, 2023, trend = 0.05, to_date = 2025.5.*
+
+![Total of the trended amounts as trend runs from 0](https://www.ai999x.com/?ax_fig=actuarial-science-ai999x/act-trend-projection-live-3)
+
+*Total of the trended amounts as trend runs from 0.0125 to 0.0875, every other input as you entered it (29 solutions). Marked: your trend = 0.05 gives total_trended = 2.481e+05. Your inputs: amounts = 100000, 120000, years = 2022, 2023, trend = 0.05, to_date = 2025.5.*
 
 ```python
 actuarial_science_ai999x.solve('act_trend_projection', amounts=[100000.0, 120000.0], years=[2022.0, 2023.0], trend=0.05, to_date=2025.5)
